@@ -6,11 +6,11 @@ const openEditProfileButton = document.querySelector('.profile__info-edit-button
 
 
 openEditProfileButton.addEventListener('click', () => {
-  editProfile.classList.remove('popup__close');
+  editProfile.classList.remove('popup_close');
 })
 
 closeEditProfileButton.addEventListener('click', () => {
-  editProfile.classList.add('popup__close');
+  editProfile.classList.add('popup_close');
 })
 
 
@@ -32,6 +32,6 @@ function formSubmitHandler (evt) {
   evt.preventDefault();
   profileName.textContent = profileInputName.value
   profileProfession.textContent = profileInputProfession.value
-  editProfile.classList.add('popup__close');
+  editProfile.classList.add('popup_close');
 }
 profileInputForm.addEventListener('submit', formSubmitHandler);
