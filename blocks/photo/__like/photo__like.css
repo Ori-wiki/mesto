@@ -1,0 +1,24 @@
+.photo__like{
+  width: 22px;
+  height: 19px;
+  box-sizing: border-box;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  background-image: url(../../../images/Disable_like.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #FFFFFF;
+  transition: opacity .3s ease;
+  align-self: center;
+}
+
+.photo__like:hover {
+  opacity: 0.6;
+}
+
+.photo__like:active{
+  background-image: url(../../../images/Active_like.svg);
+  opacity: 1;
+}
