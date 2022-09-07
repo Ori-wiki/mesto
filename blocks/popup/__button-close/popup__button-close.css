@@ -13,7 +13,6 @@
   right: -40px;
   transition: all .1s linear;
   z-index: 3;
-  background-size: contain;
 }
 
 .popup_.popup__button-close:focus {
