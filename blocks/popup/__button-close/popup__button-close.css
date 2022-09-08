@@ -6,7 +6,7 @@
   background-color: transparent;
   background-image: url(../../../images/Close_popup.svg);
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: contain;
   background-position: center;
   padding: 0;
   top: -40px;

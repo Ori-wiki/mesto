@@ -91,24 +91,24 @@
     </footer>
     <!-- Попап редактирования prfile__info -->
     <div id="editProfile" class="popup popup_close">
-      <form name="profile" class="popup__form" novalidate>
-        <fieldset class="popup__field">
-          <p class="popup__title">Редактировать профиль</p>
-          <label class="popup__form-field">
-            <input name="name" placeholder="Имя" required maxlength="30" class="popup__input" id="popup__name-input"
-              type="text" />
-          </label>
-          <label class="popup__form-field">
-            <input name="profession" placeholder="Профессия" required maxlength="80" class="popup__input"
-              id="popup__profession-input" type="text" />
-          </label>
-          <button type="submit" class="popup__button">
-            Сохранить
-          </button>
-        </fieldset>
-        <button type="button" class="popup__button-close"></button>
-      </form>
-      <div class="popup__overlay">
+      <div class="popup__container">
+        <form name="profile" class="popup__form" novalidate>
+          <fieldset class="popup__field">
+            <p class="popup__title">Редактировать профиль</p>
+            <label class="popup__form-field">
+              <input name="name" placeholder="Имя" required maxlength="30" class="popup__input" id="popup__name-input"
+                type="text" />
+            </label>
+            <label class="popup__form-field">
+              <input name="profession" placeholder="Профессия" required maxlength="80" class="popup__input"
+                id="popup__profession-input" type="text" />
+            </label>
+            <button type="submit" class="popup__button">
+              Сохранить
+            </button>
+          </fieldset>
+          <button type="button" class="popup__button-close"></button>
+        </form>
       </div>
     </div>
   </div>
