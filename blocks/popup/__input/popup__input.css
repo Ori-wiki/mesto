@@ -9,7 +9,7 @@
 }
 
 .popup__input:focus {
-outline-color: #00BFFF;
-outline-style: groove;
-outline-width: medium;
+  outline-color: #00BFFF;
+  outline-style: groove;
+  outline-width: medium;
 }

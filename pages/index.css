@@ -1,18 +1,14 @@
 @import url(../vendor/normalize.css);
 @import url(../fonts/inter.css);
 
-
 @import url(../blocks/page/page.css);
 
 @import url(../blocks/root/root.css);
 
 
-
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__line/header__line.css);
 @import url(../blocks/header/__logo/header__logo.css);
-
-
 
 
 @import url(../blocks/profile/profile.css);
@@ -22,8 +18,6 @@
 @import url(../blocks/profile/__info/profile__info.css);
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__profession/profile__profession.css);
-
-
 
 
 @import url(../blocks/photo/photo.css);
@@ -36,11 +30,8 @@
 @import url(../blocks/photo/__cap-text/photo__cap-text.css);
 
 
-
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
-
-
 
 
 @import url(../blocks/popup/popup.css);
@@ -50,7 +41,5 @@
 @import url(../blocks/popup/__form/popup__form.css);
 @import url(../blocks/popup/__form-field/popup__form-field.css);
 @import url(../blocks/popup/__input/popup__input.css);
-
 @import url(../blocks/popup/__overlay/popup__overlay.css);
-
 @import url(../blocks/popup/__title/popup__title.css);

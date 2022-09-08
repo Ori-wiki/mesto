@@ -1,4 +1,4 @@
-.header{
+.header {
   max-width: 880px;
   margin: 45px auto 40px;
   overflow: hidden;
@@ -6,7 +6,7 @@
 }
 
 @media screen and (max-width: 880px) {
-  .header{
+  .header {
     margin: 28px auto 40px;
   }
 }
