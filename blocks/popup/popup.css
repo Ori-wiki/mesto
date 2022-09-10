@@ -4,7 +4,7 @@
   position: fixed;
   justify-content: center;
   align-items: center;
-  display: flex;
+  display: none;
   transition: all 0.2s linear;
   z-index: 4;
   overflow: auto;
@@ -13,6 +13,3 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.popup_close {
-  display: none;
-}

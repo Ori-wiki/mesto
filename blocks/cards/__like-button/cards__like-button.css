@@ -1,4 +1,4 @@
-.cards__like {
+.cards__like-button {
   width: 22px;
   height: 19px;
   box-sizing: border-box;
@@ -14,11 +14,6 @@
   align-self: center;
 }
 
-.cards__like:hover {
-  opacity: 0.6;
-}
-
-.cards__like:active {
-  background-image: url(../../../images/Active_like.svg);
-  opacity: 1;
+.cards__like-button:hover {
+  opacity: 0.5;
 }

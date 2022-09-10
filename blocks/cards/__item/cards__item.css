@@ -1,7 +1,10 @@
 .cards__item {
   width: 282px;
   margin: 0;
+  padding: 0;
   justify-self: center;
+  border-radius: 10px;
+  background-color: #FFF;
 }
 
 @media screen and (max-width: 896px) {

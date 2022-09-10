@@ -29,58 +29,46 @@
       <section class="cards">
         <ul class="cards__list">
           <li class="cards__item">
-            <figure class="cards__list-item">
-              <img src="./images/cards/Karachevsk__cards.jpg" class="cards__list-img" alt="Карачаевск">
-              <figcaption class="cards__cap">
-                <p class="cards__cap-text">Карачаевск</p>
-                <button class="cards__like" type="button" aria-label="Поставить лайк"></button>
-              </figcaption>
-            </figure>
+            <img src="./images/cards/Karachevsk__cards.jpg" class="cards__list-img" alt="Карачаевск">
+            <div class="cards__info">
+              <h2 class="cards__title">Карачаевск</h2>
+              <button class="cards__like-button" type="button" aria-label="Поставить лайк"></button>
+            </div>
           </li>
           <li class="cards__item">
-            <figure class="cards__list-item">
-              <img src="./images/cards/Dambai__cards.jpg" class="cards__list-img" alt="Дамбаи">
-              <figcaption class="cards__cap">
-                <p class="cards__cap-text">Домбай</p>
-                <button class="cards__like" type="button" aria-label="Поставить лайк"></button>
-              </figcaption>
-            </figure>
+            <img src="./images/cards/Dambai__cards.jpg" class="cards__list-img" alt="Дамбаи">
+            <div class="cards__info">
+              <h2 class="cards__title">Домбай</h2>
+              <button class="cards__like-button" type="button" aria-label="Поставить лайк"></button>
+            </div>
           </li>
           <li class="cards__item">
-            <figure class="cards__list-item">
-              <img src="./images/cards/Gora-Elbrus__cards.jpg" class="cards__list-img" alt="Эльбрус">
-              <figcaption class="cards__cap">
-                <p class="cards__cap-text">Гора Эльбрус</p>
-                <button class="cards__like" type="button" aria-label="Поставить лайк"></button>
-              </figcaption>
-            </figure>
+            <img src="./images/cards/Gora-Elbrus__cards.jpg" class="cards__list-img" alt="Эльбрус">
+            <div class="cards__info">
+              <h2 class="cards__title">Гора Эльбрус</h2>
+              <button class="cards__like-button" type="button" aria-label="Поставить лайк"></button>
+            </div>
           </li>
           <li class="cards__item">
-            <figure class="cards__list-item">
-              <img src="./images/cards/Karachevsk__cards.jpg" class="cards__list-img" alt="Карачаевск">
-              <figcaption class="cards__cap">
-                <p class="cards__cap-text">Карачаево-Черкесия</p>
-                <button class="cards__like" type="button" aria-label="Поставить лайк"></button>
-              </figcaption>
-            </figure>
+            <img src="./images/cards/Karachevsk__cards.jpg" class="cards__list-img" alt="Карачаевск">
+            <div class="cards__info">
+              <h2 class="cards__title">Карачаево-Черкесия</h2>
+              <button class="cards__like-button" type="button" aria-label="Поставить лайк"></button>
+            </div>
           </li>
           <li class="cards__item">
-            <figure class="cards__list-item">
-              <img src="./images/cards/Dambai__cards.jpg" class="cards__list-img" alt="Дамбаи">
-              <figcaption class="cards__cap">
-                <p class="cards__cap-text">Домбай</p>
-                <button class="cards__like" type="button" aria-label="Поставить лайк"></button>
-              </figcaption>
-            </figure>
+            <img src="./images/cards/Dambai__cards.jpg" class="cards__list-img" alt="Дамбаи">
+            <div class="cards__info">
+              <h2 class="cards__title">Домбай</h2>
+              <button class="cards__like-button" type="button" aria-label="Поставить лайк"></button>
+            </div>
           </li>
           <li class="cards__item">
-            <figure class="cards__list-item">
-              <img src="./images/cards/Gora-Elbrus__cards.jpg" class="cards__list-img" alt="Эльбрус">
-              <figcaption class="cards__cap">
-                <p class="cards__cap-text">Гора Эльрус</p>
-                <button class="cards__like" type="button" aria-label="Поставить лайк"></button>
-              </figcaption>
-            </figure>
+            <img src="./images/cards/Gora-Elbrus__cards.jpg" class="cards__list-img" alt="Эльбрус">
+            <div class="cards__info">
+              <h2 class="cards__title">Гора Эльрус</h2>
+              <button class="cards__like-button" type="button" aria-label="Поставить лайк"></button>
+            </div>
           </li>
         </ul>
       </section>
@@ -89,24 +77,24 @@
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
     <!-- Попап редактирования prfile__info -->
-    <div id="editProfile" class="popup popup_close">
+    <div id="editProfile" class="popup">
       <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
         <form name="profile" class="popup__form">
           <fieldset class="popup__field">
-            <p class="popup__title">Редактировать профиль</p>
             <label class="popup__form-field">
               <input name="name" placeholder="Имя" required maxlength="30" class="popup__input" id="popup__name-input"
-                type="text" />
+                type="text" value=""/>
             </label>
             <label class="popup__form-field">
               <input name="profession" placeholder="Профессия" required maxlength="80" class="popup__input"
                 id="popup__profession-input" type="text" />
             </label>
-            <button type="submit" class="popup__button">
+            <button type="submit" class="popup__button-save">
               Сохранить
             </button>
           </fieldset>
-          <button type="button" class="popup__button-close" aria-label="Закрыть форму редактирования"></button>
+          <button type="sumbit" class="popup__button-close" aria-label="Закрыть форму редактирования"></button>
         </form>
       </div>
     </div>

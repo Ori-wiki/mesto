@@ -15,10 +15,6 @@
   z-index: 3;
 }
 
-.popup_.popup__button-close:focus {
-  outline: 0;
-}
-
 .popup__button-close:hover {
   cursor: pointer;
   opacity: 0.6;
