@@ -12,3 +12,9 @@
     padding: 48px 8% 36px;
   }
 }
+
+@media screen and (max-width: 320px) {
+  .footer {
+    padding-left: 19px;
+  }
+}

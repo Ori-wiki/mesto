@@ -1,5 +1,6 @@
-.photo__cap {
-  padding: 23px 30px 32px 21px;
+.cards__cap {
+  padding: 26px 20px 25px 21px;
   display: flex;
   justify-content: space-between;
 }
+

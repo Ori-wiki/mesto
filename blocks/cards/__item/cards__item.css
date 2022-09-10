@@ -1,0 +1,26 @@
+.cards__item {
+  width: 282px;
+  margin: 0;
+  justify-self: center;
+}
+
+@media screen and (max-width: 896px) {
+  .cards__item {
+    justify-self: end;
+  }
+
+  .cards__item:nth-child(2n) {
+    justify-self: start;
+  }
+
+}
+
+@media screen and (max-width: 600px) {
+  .cards__item {
+    justify-self: center;
+  }
+
+  .cards__item:nth-child(2n) {
+    justify-self: center;
+  }
+}

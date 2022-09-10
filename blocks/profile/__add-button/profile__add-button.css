@@ -1,11 +1,11 @@
-.profile__edit-button {
+.profile__add-button {
   width: 150px;
   height: 50px;
   background-color: #000000;
   background-image: url(../../../images/PLUS.svg);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 18px;
+  background-size: 22px;
   border: 2px solid #FFFFFF;
   border-radius: 2px;
   margin-left: auto;
@@ -14,24 +14,25 @@
   box-sizing: border-box;
 }
 
-.profile__edit-button:hover {
+.profile__add-button:hover {
   opacity: 0.6;
   cursor: pointer;
 }
 
-.profile__edit-button:focus {
+.profile__add-button:focus {
   outline: 0;
 }
 
 @media screen and (max-width: 880px) {
-  .profile__edit-button {
+  .profile__add-button {
     width: 335px;
     margin: 36px 0 0;
+    background-size: 16px;
   }
 }
 
 @media screen and (max-width: 426px) {
-  .profile__edit-button {
+  .profile__add-button {
     width: 282px;
   }
 }
