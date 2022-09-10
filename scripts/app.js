@@ -7,7 +7,6 @@ const profileName = document.querySelector('.profile__name');
 const profileProfession = document.querySelector('.profile__profession');
 const popupForm = popup.querySelector('.popup__form');
 
-
 function closePopup() {
   popup.classList.remove('popup_opened');
 
