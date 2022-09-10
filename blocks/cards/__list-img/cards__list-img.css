@@ -2,10 +2,8 @@
   height: 282px;
   width: 100%;
   border: none;
-  border-radius: 10px 10px 0 0 ;
+  border-radius: 10px 10px 0 0;
   box-sizing: border-box;
   background-size: 50%, contain;
   object-fit: cover;
 }
-
-
