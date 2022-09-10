@@ -10,6 +10,7 @@ const popupForm = popup.querySelector('.popup__form');
 
 function closePopup() {
   popup.classList.remove('popup_opened');
+
 }
 function openPopup() {
   popup.classList.add('popup_opened');
