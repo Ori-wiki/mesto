@@ -28,46 +28,46 @@
       </section>
       <section class="cards">
         <ul class="cards__list">
-          <li class="cards__item">
-            <img src="./images/cards/Karachevsk__cards.jpg" class="cards__list-img" alt="Карачаевск">
-            <div class="cards__info">
-              <h2 class="cards__title">Карачаевск</h2>
+          <li class="card">
+            <img src="./images/cards/Karachevsk__cards.jpg" class="card__list-img" alt="Карачаевск">
+            <div class="card__info">
+              <h2 class="card__title">Карачаевск</h2>
+              <button class="card__like-button" type="button" aria-label="Поставить лайк"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img src="./images/cards/Dambai__cards.jpg" class="card__list-img" alt="Дамбаи">
+            <div class="card__info">
+              <h2 class="card__title">Домбай</h2>
+              <button class="card__like-button" type="button" aria-label="Поставить лайк"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img src="./images/cards/Gora-Elbrus__cards.jpg" class="card__list-img" alt="Эльбрус">
+            <div class="card__info">
+              <h2 class="card__title">Гора Эльбрус</h2>
+              <button class="card__like-button" type="button" aria-label="Поставить лайк"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img src="./images/cards/Karachevsk__cards.jpg" class="card__list-img" alt="Карачаевск">
+            <div class="card__info">
+              <h2 class="card__title">Карачаево-Черкесия</h2>
+              <button class="card__like-button" type="button" aria-label="Поставить лайк"></button>
+            </div>
+          </li>
+          <li class="card">
+            <img src="./images/cards/Dambai__cards.jpg" class="card__list-img" alt="Дамбаи">
+            <div class="card__info">
+              <h2 class="card__title">Домбай</h2>
               <button class="cards__like-button" type="button" aria-label="Поставить лайк"></button>
             </div>
           </li>
-          <li class="cards__item">
-            <img src="./images/cards/Dambai__cards.jpg" class="cards__list-img" alt="Дамбаи">
-            <div class="cards__info">
-              <h2 class="cards__title">Домбай</h2>
-              <button class="cards__like-button" type="button" aria-label="Поставить лайк"></button>
-            </div>
-          </li>
-          <li class="cards__item">
-            <img src="./images/cards/Gora-Elbrus__cards.jpg" class="cards__list-img" alt="Эльбрус">
-            <div class="cards__info">
-              <h2 class="cards__title">Гора Эльбрус</h2>
-              <button class="cards__like-button" type="button" aria-label="Поставить лайк"></button>
-            </div>
-          </li>
-          <li class="cards__item">
-            <img src="./images/cards/Karachevsk__cards.jpg" class="cards__list-img" alt="Карачаевск">
-            <div class="cards__info">
-              <h2 class="cards__title">Карачаево-Черкесия</h2>
-              <button class="cards__like-button" type="button" aria-label="Поставить лайк"></button>
-            </div>
-          </li>
-          <li class="cards__item">
-            <img src="./images/cards/Dambai__cards.jpg" class="cards__list-img" alt="Дамбаи">
-            <div class="cards__info">
-              <h2 class="cards__title">Домбай</h2>
-              <button class="cards__like-button" type="button" aria-label="Поставить лайк"></button>
-            </div>
-          </li>
-          <li class="cards__item">
-            <img src="./images/cards/Gora-Elbrus__cards.jpg" class="cards__list-img" alt="Эльбрус">
-            <div class="cards__info">
-              <h2 class="cards__title">Гора Эльрус</h2>
-              <button class="cards__like-button" type="button" aria-label="Поставить лайк"></button>
+          <li class="card__item">
+            <img src="./images/cards/Gora-Elbrus__cards.jpg" class="card__list-img" alt="Эльбрус">
+            <div class="card__info">
+              <h2 class="card__title">Гора Эльрус</h2>
+              <button class="card__like-button" type="button" aria-label="Поставить лайк"></button>
             </div>
           </li>
         </ul>
@@ -83,20 +83,19 @@
         <form name="profile" class="popup__form">
           <fieldset class="popup__field">
             <label class="popup__form-field">
-              <input name="name" placeholder="Имя" required maxlength="30" class="popup__input" id="popup__name-input"
-                type="text" value=""/>
+              <input name="name" placeholder="Имя" required maxlength="30" class="popup__input popup__input_data_name"
+                type="text" />
             </label>
             <label class="popup__form-field">
-              <input name="profession" placeholder="Профессия" required maxlength="80" class="popup__input"
-                id="popup__profession-input" type="text" />
+              <input name="profession" placeholder="Профессия" required maxlength="80"
+                class="popup__input popup__input_data_profession" type="text" />
             </label>
             <button type="submit" class="popup__button-save">
               Сохранить
             </button>
           </fieldset>
-          <button type="button" class="popup__button-close" aria-label="Закрыть форму редактирования"></button>
-          <!-- Если поставить тут тип кнопки sumbit при закрытии формы на крестик будут сохранятся данные-->
         </form>
+        <button type="button" class="popup__button-close" aria-label="Закрыть форму редактирования"></button>
       </div>
     </div>
   </div>
