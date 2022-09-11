@@ -1,4 +1,4 @@
-.cards__item {
+.card {
   width: 282px;
   margin: 0;
   padding: 0;
@@ -8,22 +8,22 @@
 }
 
 @media screen and (max-width: 896px) {
-  .cards__item {
+  .card {
     justify-self: end;
   }
 
-  .cards__item:nth-child(2n) {
+  .card:nth-child(2n) {
     justify-self: start;
   }
 
 }
 
 @media screen and (max-width: 600px) {
-  .cards__item {
+  .card {
     justify-self: center;
   }
 
-  .cards__item:nth-child(2n) {
+  .card:nth-child(2n) {
     justify-self: center;
   }
 }

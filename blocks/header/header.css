@@ -16,4 +16,8 @@
   .header {
     margin: 28px auto 40px;
   }
+
+  .header::after {
+    padding-top: 31px;
+  }
 }
