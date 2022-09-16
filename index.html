@@ -77,7 +77,7 @@
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
     <!-- Попап редактирования prfile__info -->
-    <div id="editProfile" class="popup">
+    <div class="popup popup_edit_profile-info">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form name="profile" class="popup__form">
@@ -98,8 +98,43 @@
         <button type="button" class="popup__button-close" aria-label="Закрыть форму редактирования"></button>
       </div>
     </div>
+    <!--Попап добавления новой карточки card-->
+    <div class="popup popup_add_card">
+      <div class="popup__container ">
+        <h2 class="popup__title">Новое место</h2>
+        <form name="profile" class="popup__form">
+          <fieldset class="popup__field">
+            <label class="popup__form-field">
+              <input name="card-name" placeholder="Название" required maxlength="30" class="popup__input popup__input_data_card-name"
+                type="text" />
+            </label>
+            <label class="popup__form-field">
+              <input name="card-link" placeholder="Ссылка на картинку" required maxlength="200"
+                class="popup__input popup__input_data_card-link" type="text" />
+            </label>
+            <button type="submit" class="popup__button-save">
+              Создать
+            </button>
+          </fieldset>
+        </form>
+        <button type="button" class="popup__button-close" aria-label="Закрыть форму редактирования"></button>
+      </div>
+    </div>
   </div>
-  <script src="./scripts/app.js"></script>
+  <template class="card_template">
+    <li class="card">
+      <img src="" class="card__list-img" alt="Эльбрус">
+      <div class="card__info">
+        <h2 class="card__title"></h2>
+        <button type="button" title="Удалить карточку" class="card__delete-button"></button>
+        <button class="card__like-button" type="button" aria-label="Поставить лайк"></button>
+      </div>
+    </li>
+  </template>
+  <script src="./scripts/app1.js"></script>
+  <script src="./scripts/app2.js"></script>
+
+
 </body>
 
 </html>
