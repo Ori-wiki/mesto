@@ -6,7 +6,32 @@ const cardLink = popup1.querySelector('.popup__input_data_card-link');
 const profileName1 = document.querySelector('.profile__name');
 const profileProfession1 = document.querySelector('.profile__profession');
 const popupForm1 = popup1.querySelector('.popup__form');
-
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
 function closePopup1() {
   popup1.classList.remove('popup_opened');
 }
@@ -27,7 +52,11 @@ function addCard(cardNameValue, cardLinkValue) {
   cardElement.querySelector('.card__like-button').addEventListener('click', function (evt) {
     evt.target.classList.toggle('card__like-button_active');
   });
-  cardsContainer.append(cardElement);
+  cardElement.querySelector('.card__delete-button').addEventListener('click', ()=> {
+    cardElement.remove();
+    console.log('удалить')
+  });
+    cardsContainer.append(cardElement);
 }
 
 function formSubmitHandler1(evt) {
@@ -39,6 +68,14 @@ function formSubmitHandler1(evt) {
   cardName.value = '';
   cardLink.value = '';
 }
+
+ function cardSix () {
+  for (let i = 0; i < initialCards.length; i++) {
+    addCard(initialCards[i].name, initialCards[i].link);
+  }
+
+};
+cardSix();
 
 popupOpenButton1.addEventListener('click', openPopup1);
 
