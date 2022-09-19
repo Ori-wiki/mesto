@@ -7,9 +7,7 @@ const openImgPopup = document.querySelector('.popup_open_img');
 const cardsContainer = document.querySelector('.cards__list');
 
 //popup close button
-const editProfilePopupCloseButton = editProfilePopup.querySelector('.popup__button-close');
-const addCardPopupCloseButton = addCardPopup.querySelector('.popup__button-close');
-const openImgPopupCloseButton = openImgPopup.querySelector('.popup__button-close');
+const closeButtons = document.querySelectorAll('.popup__button-close');
 
 //popup open button
 const editProfilePopupOpenButton = document.querySelector('.profile__info-edit-button');
@@ -32,6 +30,9 @@ const profileProfession = document.querySelector('.profile__profession');
 //popup img
 const imgPopup = openImgPopup.querySelector('.popup__image');
 const imgSubtitle = openImgPopup.querySelector('.popup__image-subtitle');
+
+//template
+const cardTemplate = document.querySelector('.card_template').content;
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
@@ -75,13 +76,13 @@ function renderCards() {
 
 //Функия создания карточки
 function createCard(cardNameValue, cardLinkValue) {
-  const cardTemplate = document.querySelector('.card_template').content;
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const cardImage = cardElement.querySelector('.card__list-img');
 
   cardElement.querySelector('.card__title').textContent = cardNameValue;
   cardImage.addEventListener('click', () => {
     imgPopup.src = cardLinkValue;
+    imgPopup.alt = cardNameValue;
     imgSubtitle.textContent = cardNameValue;
     openPopup(openImgPopup);
   });
@@ -98,19 +99,19 @@ function createCard(cardNameValue, cardLinkValue) {
 
 //Функция добавления карточки
 function addCard(cardNameValue, cardLinkValue) {
-  const cardElement = createCard(cardNameValue, cardLinkValue);
+  cardElement = createCard(cardNameValue, cardLinkValue);
   cardsContainer.prepend(cardElement);
 }
 
 //Функции отпрвки формы
-function formSubmitEditProfileHandler(evt) {
+function handleEditProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = profileInputName.value
   profileProfession.textContent = profileInputProfession.value
   closePopup(editProfilePopup);
 }
 
-function formSubmitAddCardHandler(evt) {
+function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
 
   addCard(cardNameInput.value, cardLinkInput.value);
@@ -122,6 +123,10 @@ function formSubmitAddCardHandler(evt) {
 
 renderCards();
 
+closeButtons.forEach((button) => {
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup));
+});
 
 // Слушатели открытия popup
 editProfilePopupOpenButton.addEventListener('click', () => {
@@ -133,18 +138,10 @@ addCardPopupOpenButton.addEventListener('click', () => {
   openPopup(addCardPopup);
 });
 
-// Слушатели закрытия popup
-editProfilePopupCloseButton.addEventListener('click', () => {
-  closePopup(editProfilePopup);
-});
-addCardPopupCloseButton.addEventListener('click', () => {
-  closePopup(addCardPopup);
-  cardNameInput.value = '';
-  cardLinkInput.value = '';
-});
-openImgPopupCloseButton.addEventListener('click', () => {
-  closePopup(openImgPopup);
-});
-editProfilePopupForm.addEventListener('submit', formSubmitEditProfileHandler);
-addCardPopupForm.addEventListener('submit', formSubmitAddCardHandler);
+editProfilePopupForm.addEventListener('submit', handleEditProfileFormSubmit);
+addCardPopupForm.addEventListener('submit', handleAddCardFormSubmit);
+
+
+
+
 
