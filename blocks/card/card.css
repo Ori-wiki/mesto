@@ -5,6 +5,7 @@
   justify-self: center;
   border-radius: 10px;
   background-color: #FFF;
+  position: relative;
 }
 
 @media screen and (max-width: 896px) {
