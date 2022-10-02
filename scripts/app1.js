@@ -127,6 +127,13 @@ closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
 });
+//Функция закрытия попапа на Escape
+function keyHandler(evt) {
+  const popupOpened = document.querySelector('.popup_opened');
+  if (evt.key === 'Escape') {
+    closePopup(popupOpened)
+  }
+}
 
 // Слушатели открытия popup
 editProfilePopupOpenButton.addEventListener('click', () => {
@@ -140,7 +147,7 @@ addCardPopupOpenButton.addEventListener('click', () => {
 
 editProfilePopupForm.addEventListener('submit', handleEditProfileFormSubmit);
 addCardPopupForm.addEventListener('submit', handleAddCardFormSubmit);
-
+document.addEventListener('keydown', keyHandler)
 
 
 
