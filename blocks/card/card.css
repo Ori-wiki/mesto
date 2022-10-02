@@ -28,3 +28,7 @@
     justify-self: center;
   }
 }
+
+.card:hover{
+  scale: 1.05;
+}
