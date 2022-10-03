@@ -12,10 +12,11 @@
   line-height: 17px;
   letter-spacing: 0em;
   text-align: left;
+  outline: none;
 }
 
-.popup__input:focus {
+/* .popup__input:focus {
   outline-color: #00BFFF;
   outline-style: groove;
   outline-width: medium;
-}
+} */
