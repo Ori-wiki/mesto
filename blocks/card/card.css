@@ -6,6 +6,7 @@
   border-radius: 10px;
   background-color: #FFF;
   position: relative;
+  transition: all 0.2s linear;
 }
 
 @media screen and (max-width: 896px) {
@@ -29,6 +30,6 @@
   }
 }
 
-.card:hover{
-  scale: 1.05;
+.card:hover {
+  transform: scale(1.05);
 }
