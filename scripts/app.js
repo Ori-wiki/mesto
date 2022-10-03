@@ -108,7 +108,7 @@ function addCard(cardNameValue, cardLinkValue) {
   cardsContainer.prepend(cardElement);
 }
 
-//Функции отпрвки формы профиля
+//Функции отпарвки формы профиля
 function handleEditProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = profileInputName.value
@@ -153,6 +153,7 @@ editProfilePopupOpenButton.addEventListener('click', () => {
   openPopup(editProfilePopup);
   profileInputName.value = profileName.textContent;
   profileInputProfession.value = profileProfession.textContent;
+  checkInputValidity(formElement, inputElement)
 });
 
 addCardPopupOpenButton.addEventListener('click', () => {
@@ -163,7 +164,7 @@ editProfilePopupForm.addEventListener('submit', handleEditProfileFormSubmit);
 addCardPopupForm.addEventListener('submit', handleAddCardFormSubmit);
 
 popups.forEach((popup) => {
-  popup.addEventListener('mouseup', handleOverlayClose)
+  popup.addEventListener('click', handleOverlayClose)
 });
 
 
