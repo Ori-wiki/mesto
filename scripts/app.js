@@ -1,5 +1,5 @@
 //popup список
-const popupList = document.querySelectorAll('.popup');
+const popups = document.querySelectorAll('.popup');
 
 //popup
 const editProfilePopup = document.querySelector('.popup_edit_profile-info');
@@ -147,7 +147,6 @@ function handleOverlayClose(evt) {
   };
 }
 
-
 editProfilePopupOpenButton.addEventListener('click', () => {
   openPopup(editProfilePopup);
   profileInputName.value = profileName.textContent;
@@ -163,7 +162,7 @@ addCardPopupForm.addEventListener('submit', handleAddCardFormSubmit);
 
 document.addEventListener('keydown', handleEscClose)
 
-popupList.forEach((popup) => {
+popups.forEach((popup) => {
   popup.addEventListener('click', handleOverlayClose)
 });
 
