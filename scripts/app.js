@@ -163,7 +163,7 @@ addCardPopupForm.addEventListener('submit', handleAddCardFormSubmit);
 document.addEventListener('keydown', handleEscClose)
 
 popups.forEach((popup) => {
-  popup.addEventListener('click', handleOverlayClose)
+  popup.addEventListener('mouseup', handleOverlayClose)
 });
 
 
