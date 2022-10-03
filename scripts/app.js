@@ -39,10 +39,12 @@ const cardTemplate = document.querySelector('.card_template').content;
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleEscClose);
 }
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', handleEscClose);
 }
 //Функция рендеринга
 function renderCards() {
@@ -159,8 +161,6 @@ addCardPopupOpenButton.addEventListener('click', () => {
 
 editProfilePopupForm.addEventListener('submit', handleEditProfileFormSubmit);
 addCardPopupForm.addEventListener('submit', handleAddCardFormSubmit);
-
-document.addEventListener('keydown', handleEscClose)
 
 popups.forEach((popup) => {
   popup.addEventListener('mouseup', handleOverlayClose)

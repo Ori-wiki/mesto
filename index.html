@@ -38,15 +38,17 @@
     <div class="popup popup_edit_profile-info">
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="profile" class="popup__form">
+        <form name="profile" class="popup__form" novalidate>
           <fieldset class="popup__field">
             <label class="popup__form-field">
-              <input name="name" placeholder="Имя" required maxlength="30" class="popup__input popup__input_data_name"
-                type="text" />
+              <input name="name" id="name-input" placeholder="Имя" required minlength="2" maxlength="40"
+                class="popup__input popup__input_data_name" type="text" />
+              <span class="form__input-error name-input-error"></span>
             </label>
             <label class="popup__form-field">
-              <input name="profession" placeholder="Профессия" required maxlength="80"
+              <input name="profession" id="profession-input" placeholder="Профессия" required minlength="2" maxlength="200"
                 class="popup__input popup__input_data_profession" type="text" />
+              <span class="form__input-error profession-input-error"></span>
             </label>
             <button type="submit" class="popup__button-save">
               Сохранить
@@ -60,15 +62,17 @@
     <div class="popup popup_add_card">
       <div class="popup__container">
         <h2 class="popup__title">Новое место</h2>
-        <form name="profile" class="popup__form">
+        <form name="profile" class="popup__form" novalidate>
           <fieldset class="popup__field">
             <label class="popup__form-field">
-              <input name="card-name" placeholder="Название" required maxlength="30"
+              <input name="card-name" id="card-name-input" placeholder="Название" required minlength="2" maxlength="30"
                 class="popup__input popup__input_data_card-name" type="text" />
+              <span class="form__input-error card-name-input-error"></span>
             </label>
             <label class="popup__form-field">
-              <input name="card-link" placeholder="Ссылка на картинку" required maxlength="200"
-                class="popup__input popup__input_data_card-link" type="text" />
+              <input name="card-link" id="card-link-input" placeholder="Ссылка на картинку" required maxlength="200"
+                class="popup__input popup__input_data_card-link" type="url" />
+              <span class="form__input-error card-link-input-error"></span>
             </label>
             <button type="submit" class="popup__button-save">
               Создать
@@ -83,8 +87,7 @@
   <div class="popup popup_open_img">
     <div class="popup__fullScreen">
       <figure class="popup__image-figure">
-        <img class="popup__image"
-          alt="Фото в попапе из карточки"/>
+        <img class="popup__image" alt="Фото в попапе из карточки" />
         <figcaption class="popup__image-subtitle"></figcaption>
       </figure>
       <button type="button" class="popup__button-close" aria-label="Закрыть фотографию"></button>
