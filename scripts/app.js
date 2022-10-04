@@ -79,6 +79,7 @@ function renderCards() {
   ];
   initialCards.forEach((function (element) {
     addCard(element.name, element.link);
+    putCard(cardElement)
   }))
 };
 
@@ -99,15 +100,20 @@ function createCard(cardNameValue, cardLinkValue) {
   cardElement.querySelector('.card__like-button').addEventListener('click', (evt) => {
     evt.target.classList.toggle('card__like-button_active');
   });
-  cardElement.querySelector('.card__delete-button').addEventListener('click', (evt) => {
+  cardElement.querySelector('.card__delete-button').addEventListener('click', () => {
     cardElement.remove();
   });
   return cardElement;
+
 }
 
 //Функция добавления карточки
 function addCard(cardNameValue, cardLinkValue) {
-  cardElement = createCard(cardNameValue, cardLinkValue);
+  return cardElement = createCard(cardNameValue, cardLinkValue);
+
+}
+
+function putCard(cardElement){
   cardsContainer.prepend(cardElement);
 }
 
@@ -122,11 +128,9 @@ function handleEditProfileFormSubmit(evt) {
 //Функции отпрвки формы card
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
-
   addCard(cardNameInput.value, cardLinkInput.value);
-
+  putCard(cardElement);
   closePopup(addCardPopup);
-
   evt.target.reset();
 }
 // Вызов 6 карточек
