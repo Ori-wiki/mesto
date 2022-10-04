@@ -79,7 +79,7 @@ function renderCards() {
   ];
   initialCards.forEach((function (element) {
     addCard(element.name, element.link);
-    putCard(cardElement)
+    putCard(cardElement);
   }))
 };
 
@@ -113,7 +113,7 @@ function addCard(cardNameValue, cardLinkValue) {
 
 }
 
-function putCard(cardElement){
+function putCard(cardElement) {
   cardsContainer.prepend(cardElement);
 }
 
@@ -151,17 +151,15 @@ closeButtons.forEach((button) => {
 
 //Функция закрытия попапа на Escape
 function handleEscClose(evt) {
-  const popupOpened = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
     closePopup(popupOpened)
   }
 }
-
 function handleOverlayClose(evt) {
-  const popupOpened = document.querySelector('.popup_opened');
-  if (evt.target === popupOpened) {
-    closePopup(popupOpened)
-  };
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.target)
+  }
 }
 
 editProfilePopupOpenButton.addEventListener('click', () => {
