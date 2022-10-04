@@ -9,6 +9,9 @@ const openImgPopup = document.querySelector('.popup_open_img');
 // cardContainer
 const cardsContainer = document.querySelector('.cards__list');
 
+//popup button-save
+const popupButtonSave = editProfilePopup.querySelector('.popup__button-save');
+
 //popup close button
 const closeButtons = document.querySelectorAll('.popup__button-close');
 
@@ -126,8 +129,16 @@ function handleAddCardFormSubmit(evt) {
 
   evt.target.reset();
 }
-
+// Вызов 6 карточек
 renderCards();
+
+// Функция ресета валидации editProfilePopup
+function resetValidEditProfilePopup() {
+  popupButtonSave.removeAttribute('disabled');
+  popupButtonSave.classList.remove('popup__button_inactive');
+  checkInputValidity(editProfilePopup, profileInputName);
+  checkInputValidity(editProfilePopup, profileInputProfession);
+}
 
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
@@ -150,12 +161,10 @@ function handleOverlayClose(evt) {
 }
 
 editProfilePopupOpenButton.addEventListener('click', () => {
-  openPopup(editProfilePopup);
   profileInputName.value = profileName.textContent;
   profileInputProfession.value = profileProfession.textContent;
-  checkInputValidity(editProfilePopup, profileInputName);
-  editProfilePopupForm.removeAttribute('disabled');
-  editProfilePopupForm.classList.remove('popup__button_inactive');
+  openPopup(editProfilePopup);
+  resetValidEditProfilePopup();
 });
 
 addCardPopupOpenButton.addEventListener('click', () => {
