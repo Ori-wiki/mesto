@@ -153,7 +153,9 @@ editProfilePopupOpenButton.addEventListener('click', () => {
   openPopup(editProfilePopup);
   profileInputName.value = profileName.textContent;
   profileInputProfession.value = profileProfession.textContent;
-  checkInputValidity(formElement, inputElement)
+  checkInputValidity(editProfilePopup, profileInputName);
+  editProfilePopupForm.removeAttribute('disabled');
+  editProfilePopupForm.classList.remove('popup__button_inactive');
 });
 
 addCardPopupOpenButton.addEventListener('click', () => {
