@@ -100,7 +100,7 @@ function createCard(cardNameValue, cardLinkValue) {
     evt.target.classList.toggle('card__like-button_active');
   });
   cardElement.querySelector('.card__delete-button').addEventListener('click', (evt) => {
-    evt.target.closest('.card').remove();
+    cardElement.remove();
   });
   return cardElement;
 }
