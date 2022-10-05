@@ -96,7 +96,7 @@ function createCard(cardNameValue, cardLinkValue) {
     openPopup(openImgPopup);
   });
   cardImage.src = cardLinkValue;
-  cardImage.alt = cardLinkValue;
+  cardImage.alt = cardNameValue;
   cardElement.querySelector('.card__like-button').addEventListener('click', (evt) => {
     evt.target.classList.toggle('card__like-button_active');
   });
