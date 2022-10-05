@@ -35,10 +35,10 @@ const checkInputValidity = (formElement, inputElement, rest) => {
 const setEventListeners = (formElement, { inputSelector, submitButtonSelector, ...rest }) => {
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
   const buttonElement = formElement.querySelector(submitButtonSelector);
+
   toggleButtonState(inputList, buttonElement, rest)
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
-      console.log('Input')
       toggleButtonState(inputList, buttonElement, rest)
       checkInputValidity(formElement, inputElement, rest);
     })
@@ -93,3 +93,13 @@ const resetButton = (buttonElement,) => {
   buttonElement.setAttribute('disabled', 'true')
   buttonElement.classList.add('popup__button_inactive');
 }
+
+
+const kolpo = ()=>{
+  const inputqwe = (document.querySelector('input:-internal-autofill-selected'))
+  checkInputValidity (addCardPopupForm, inputqwe)
+  if(input.classList.contains('.input:-internal-autofill-selected')){
+    console.log('Kappa')
+  }
+}
+

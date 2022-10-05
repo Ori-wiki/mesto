@@ -41,12 +41,12 @@
         <form name="profile" class="popup__form" novalidate>
           <fieldset class="popup__field">
             <label class="popup__form-field">
-              <input name="name" id="name-input" placeholder="Имя" required minlength="10" maxlength="40"
+              <input name="name" id="name-input" placeholder="Имя" required minlength="2" maxlength="40" pattern=".{2,40}"
                 class="popup__input popup__input_data_name" type="text" />
               <span class="popup__input-error name-input-error"></span>
             </label>
             <label class="popup__form-field">
-              <input name="profession" id="profession-input" placeholder="Профессия" required minlength="10"
+              <input name="profession" id="profession-input" placeholder="Профессия" required minlength="2" pattern=".{2,200}"
                 maxlength="200" class="popup__input popup__input_data_profession" type="text" />
               <span class="popup__input-error profession-input-error"></span>
             </label>
@@ -65,7 +65,7 @@
         <form name="profile" class="popup__form" novalidate>
           <fieldset class="popup__field">
             <label class="popup__form-field">
-              <input name="card-name" id="card-name-input" placeholder="Название" required minlength="10" maxlength="30"
+              <input name="card-name" id="card-name-input" placeholder="Название" required minlength="2" maxlength="30" pattern=".{2,30}"
                 class="popup__input popup__input_data_card-name" type="text" />
               <span class="popup__input-error card-name-input-error"></span>
             </label>
