@@ -136,13 +136,13 @@ function handleAddCardFormSubmit(evt) {
 // Вызов 6 карточек
 renderCards();
 
-// Функция ресета валидации editProfilePopup
-function resetValidEditProfilePopup() {
-  popupButtonSave.removeAttribute('disabled');
-  popupButtonSave.classList.remove('popup__button_inactive');
-  checkInputValidity(editProfilePopup, profileInputName);
-  checkInputValidity(editProfilePopup, profileInputProfession);
-}
+// // Функция ресета валидации editProfilePopup
+// function resetValidEditProfilePopup() {
+//   popupButtonSave.removeAttribute('disabled');
+//   popupButtonSave.classList.remove('popup__button_inactive');
+//   checkInputValidity(editProfilePopup, profileInputName);
+//   checkInputValidity(editProfilePopup, profileInputProfession);
+// }
 
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
@@ -166,7 +166,6 @@ editProfilePopupOpenButton.addEventListener('click', () => {
   profileInputName.value = profileName.textContent;
   profileInputProfession.value = profileProfession.textContent;
   openPopup(editProfilePopup);
-  resetValidEditProfilePopup();
 });
 
 addCardPopupOpenButton.addEventListener('click', () => {
