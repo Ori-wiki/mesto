@@ -12,6 +12,9 @@ const cardsContainer = document.querySelector('.cards__list');
 //popup button-save
 const popupButtonSave = editProfilePopup.querySelector('.popup__button-save');
 
+//popup button-add
+const popupButtonAdd = addCardPopup.querySelector('.popup__button-save');
+
 //popup close button
 const closeButtons = document.querySelectorAll('.popup__button-close');
 
@@ -136,14 +139,6 @@ function handleAddCardFormSubmit(evt) {
 // Вызов 6 карточек
 renderCards();
 
-// // Функция ресета валидации editProfilePopup
-// function resetValidEditProfilePopup() {
-//   popupButtonSave.removeAttribute('disabled');
-//   popupButtonSave.classList.remove('popup__button_inactive');
-//   checkInputValidity(editProfilePopup, profileInputName);
-//   checkInputValidity(editProfilePopup, profileInputProfession);
-// }
-
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup));
@@ -165,10 +160,13 @@ function handleOverlayClose(evt) {
 editProfilePopupOpenButton.addEventListener('click', () => {
   profileInputName.value = profileName.textContent;
   profileInputProfession.value = profileProfession.textContent;
+  resetButton(popupButtonSave);
+  resetInputError(editProfilePopupForm);
   openPopup(editProfilePopup);
 });
 
 addCardPopupOpenButton.addEventListener('click', () => {
+  resetButton(popupButtonAdd);
   openPopup(addCardPopup);
 });
 
