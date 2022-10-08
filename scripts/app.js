@@ -166,6 +166,8 @@ editProfilePopupOpenButton.addEventListener('click', () => {
 });
 
 addCardPopupOpenButton.addEventListener('click', () => {
+  addCardPopupForm.reset();
+  resetInputError(addCardPopupForm)
   resetButton(popupButtonAdd);
   openPopup(addCardPopup);
 });

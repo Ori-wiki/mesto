@@ -83,6 +83,8 @@ const resetInputError = (formElement) => {
   const inputErrorList = formElement.querySelectorAll('.popup__input_error');
   const inputErrorActiveList = formElement.querySelectorAll('.popup__input-error_active');
   inputErrorList.forEach((inputElement) => {
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    errorElement.textContent = '';
     inputElement.classList.remove('popup__input_error');
   })
   inputErrorActiveList.forEach((errorElement) => {
@@ -95,11 +97,4 @@ const resetButton = (buttonElement,) => {
 }
 
 
-const kolpo = ()=>{
-  const inputqwe = (document.querySelector('input:-internal-autofill-selected'))
-  checkInputValidity (addCardPopupForm, inputqwe)
-  if(input.classList.contains('.input:-internal-autofill-selected')){
-    console.log('Kappa')
-  }
-}
 
