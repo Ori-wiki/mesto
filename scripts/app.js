@@ -86,39 +86,39 @@ function renderCards() {
   }))
 };
 
-//Функия создания карточки
-function createCard(cardNameValue, cardLinkValue) {
-  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-  const cardImage = cardElement.querySelector('.card__list-img');
+// //Функия создания карточки
+// function createCard(cardNameValue, cardLinkValue) {
+//   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+//   const cardImage = cardElement.querySelector('.card__list-img');
 
-  cardElement.querySelector('.card__title').textContent = cardNameValue;
-  cardImage.addEventListener('click', () => {
-    imgPopup.src = cardLinkValue;
-    imgPopup.alt = cardNameValue;
-    imgSubtitle.textContent = cardNameValue;
-    openPopup(openImgPopup);
-  });
-  cardImage.src = cardLinkValue;
-  cardImage.alt = cardNameValue;
-  cardElement.querySelector('.card__like-button').addEventListener('click', (evt) => {
-    evt.target.classList.toggle('card__like-button_active');
-  });
-  cardElement.querySelector('.card__delete-button').addEventListener('click', () => {
-    cardElement.remove();
-  });
-  return cardElement;
+//   cardElement.querySelector('.card__title').textContent = cardNameValue;
+//   cardImage.addEventListener('click', () => {
+//     imgPopup.src = cardLinkValue;
+//     imgPopup.alt = cardNameValue;
+//     imgSubtitle.textContent = cardNameValue;
+//     openPopup(openImgPopup);
+//   });
+//   cardImage.src = cardLinkValue;
+//   cardImage.alt = cardNameValue;
+//   cardElement.querySelector('.card__like-button').addEventListener('click', (evt) => {
+//     evt.target.classList.toggle('card__like-button_active');
+//   });
+//   cardElement.querySelector('.card__delete-button').addEventListener('click', () => {
+//     cardElement.remove();
+//   });
+//   return cardElement;
 
-}
+// }
 
-//Функция добавления карточки
-function addCard(cardNameValue, cardLinkValue) {
-  return cardElement = createCard(cardNameValue, cardLinkValue);
+// //Функция добавления карточки
+// function addCard(cardNameValue, cardLinkValue) {
+//   return cardElement = createCard(cardNameValue, cardLinkValue);
 
-}
+// }
 
-function putCard(cardElement) {
-  cardsContainer.prepend(cardElement);
-}
+// function putCard(cardElement) {
+//   cardsContainer.prepend(cardElement);
+// }
 
 //Функции отпарвки формы профиля
 function handleEditProfileFormSubmit(evt) {
@@ -136,8 +136,8 @@ function handleAddCardFormSubmit(evt) {
   closePopup(addCardPopup);
   evt.target.reset();
 }
-// Вызов 6 карточек
-renderCards();
+// // Вызов 6 карточек
+// renderCards();
 
 closeButtons.forEach((button) => {
   const popup = button.closest('.popup');
