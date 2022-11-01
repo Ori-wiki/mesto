@@ -1,12 +1,12 @@
 class Card {
-  constructor(cardNameValue, cardLinkValue, templateSelector) {
+  constructor(data, templateSelector, openFullScreenImgPopup) {
+    this._cardNameValue = data.name;
+    this._cardLinkValue = data.link;
     this._templateSelector = templateSelector;
-    this._cardNameValue = cardNameValue;
-    this._cardLinkValue = cardLinkValue;
+    this._openFullScreenImgPopup = openFullScreenImgPopup;
   }
 
   _getTemplate() {
-
     const cardElement = document
       .querySelector(this._templateSelector)
       .content
@@ -18,31 +18,32 @@ class Card {
 
   createCard() {
     this._element = this._getTemplate();
-
-    const cardImage = this._element.querySelector('.card__list-img');
-
+    this._cardImage = this._element.querySelector('.card__list-img');
     this._element.querySelector('.card__title').textContent = this._cardNameValue;
-
+    this._cardImage.src = this._cardLinkValue;
+    this._cardImage.alt = this._cardNameValue;
     this._setEventListeners()
-
-    cardImage.src = this._cardLinkValue;
-    cardImage.alt = this._cardNameValue;
-
 
     return this._element;
   }
+
+  _handleDeleteCard() {
+    this._element.remove()
+  }
+
+  _handleSetLike(evt) {
+    evt.target.classList.toggle('card__like-button_active');
+  }
+
   _setEventListeners() {
-    this._element.querySelector('.card__list-img').addEventListener('click', () => {
-      imgPopup.src = this._cardLinkValue;
-      imgPopup.alt = this._cardNameValue;
-      imgSubtitle.textContent = this._cardNameValue;
-      openPopup(openImgPopup);
+    this._cardImage.addEventListener('click', () => {
+      this._openFullScreenImgPopup(this._cardNameValue, this._cardLinkValue)
     });
     this._element.querySelector('.card__like-button').addEventListener('click', (evt) => {
-      evt.target.classList.toggle('card__like-button_active');
+      this._handleSetLike(evt)
     });
     this._element.querySelector('.card__delete-button').addEventListener('click', () => {
-      this._element.remove();
+      this._handleDeleteCard()
     });
   }
 
@@ -67,15 +68,7 @@ class Card {
 
 
 
-const renderElements = () => {
-  let cardCard = new Card('пеним', 'https://im.wampi.ru/2022/10/25/2896979787.jpg', '.card_template')
-  console.log(cardCard)
-  const cardElement = cardCard.createCard();
-  console.log(cardElement)
-  cardsContainer.prepend(cardElement);
 
-};
-renderElements()
 
 // defaultCardButton.addEventListener('click', () => {
 //   renderElements(true);
