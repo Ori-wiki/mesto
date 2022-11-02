@@ -33,7 +33,6 @@ export default class FormValidator {
     }
   }
   _setEventListeners() {
-
     this._buttonElement = this._field.querySelector(this._submitButtonSelector);
 
     this._toggleButtonState()
@@ -61,7 +60,6 @@ export default class FormValidator {
   };
 
   _toggleButtonState() {
-
     if (this._hasInvalidInput(this._inputList)) {
       this._disableButtonSubmit()
     } else {
@@ -76,7 +74,6 @@ export default class FormValidator {
   }
 
   resetInputError() {
-
     this._inputErrorActiveList = this._field.querySelectorAll(`.${this._errorClass}`);
     this._inputList.forEach((inputElement) => {
       const errorElement = this._field.querySelector(`.${inputElement.id}-error`);
