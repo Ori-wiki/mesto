@@ -33,12 +33,40 @@ function handleAddCardFormSubmit(evt) {
   evt.target.reset();
 }
 
+
+
+//Вызов валидации форм
+const editProfilePopupValidation = new FormValidator(
+  enableValidationObj,
+  editProfilePopupField
+);
+editProfilePopupValidation.enableValidation()
+
+const addCardPopupValidation = new FormValidator(
+  enableValidationObj,
+  addCardPopupField
+);
+addCardPopupValidation.enableValidation()
+
+
+
+
+//Слушатели
 addCardPopupOpenButton.addEventListener('click', () => {
   addCardPopupForm.reset();
-  resetInputError(addCardPopupForm)
-  resetButton(popupButtonAdd);
+  addCardPopupValidation.resetInputError();
   openPopup(addCardPopup);
 });
 
-// addCard(cardNameInput.value, cardLinkInput.value);
+
 addCardPopupForm.addEventListener('submit', handleAddCardFormSubmit);
+
+
+editProfilePopupOpenButton.addEventListener('click', () => {
+  profileInputName.value = profileName.textContent;
+  profileInputProfession.value = profileProfession.textContent;
+  editProfilePopupValidation.resetInputError();
+  openPopup(editProfilePopup);
+});
+
+editProfilePopupForm.addEventListener('submit', handleEditProfileFormSubmit);

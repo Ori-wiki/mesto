@@ -112,16 +112,16 @@ function handleOverlayClose(evt) {
   }
 }
 
-editProfilePopupOpenButton.addEventListener('click', () => {
-  profileInputName.value = profileName.textContent;
-  profileInputProfession.value = profileProfession.textContent;
-  resetButton(popupButtonSave);
-  resetInputError(editProfilePopupForm);
-  openPopup(editProfilePopup);
-});
+// editProfilePopupOpenButton.addEventListener('click', () => {
+//   profileInputName.value = profileName.textContent;
+//   profileInputProfession.value = profileProfession.textContent;
+//   // resetButton(popupButtonSave);
+//   // resetInputError(editProfilePopupForm);
+//   openPopup(editProfilePopup);
+// });
 
 
-editProfilePopupForm.addEventListener('submit', handleEditProfileFormSubmit);
+
 
 
 popups.forEach((popup) => {

@@ -34,6 +34,10 @@ const openImgPopup = document.querySelector('.popup_open_img');
 const editProfilePopupForm = editProfilePopup.querySelector('.popup__form');
 const addCardPopupForm = addCardPopup.querySelector('.popup__form');
 
+// popup field
+const editProfilePopupField = editProfilePopupForm.querySelector('.popup__field')
+const addCardPopupField = addCardPopupForm.querySelector('.popup__field')
+
 // input addCardPopup
 const cardNameInput = addCardPopup.querySelector('.popup__input_data_card-name');
 const cardLinkInput = addCardPopup.querySelector('.popup__input_data_card-link');

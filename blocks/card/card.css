@@ -7,6 +7,8 @@
   background-color: #FFF;
   position: relative;
   transition: all 0.2s linear;
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 896px) {
