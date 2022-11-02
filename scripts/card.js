@@ -1,4 +1,4 @@
-class Card {
+export default class Card {
   constructor(data, templateSelector, openFullScreenImgPopup) {
     this._cardNameValue = data.name;
     this._cardLinkValue = data.link;

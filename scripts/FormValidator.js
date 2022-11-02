@@ -1,14 +1,4 @@
-const enableValidationObj = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  fieldSelector: '.popup__field',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_inactive',
-  inputErrorClass: 'popup__input_error',
-  errorClass: 'popup__input-error_active'
-}
-
-class FormValidator {
+export default class FormValidator {
   constructor(enableValidationObj, popupField) {
     this._field = popupField;
     this._formSelector = enableValidationObj.formSelector;
@@ -88,7 +78,6 @@ class FormValidator {
   resetInputError() {
 
     this._inputErrorActiveList = this._field.querySelectorAll(`.${this._errorClass}`);
-    console.log(this._inputErrorActiveList)
     this._inputList.forEach((inputElement) => {
       const errorElement = this._field.querySelector(`.${inputElement.id}-error`);
       errorElement.textContent = '';
