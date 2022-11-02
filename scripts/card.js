@@ -1,4 +1,4 @@
-class Card {
+export default class Card {
   constructor(data, templateSelector, openFullScreenImgPopup) {
     this._cardNameValue = data.name;
     this._cardLinkValue = data.link;
@@ -46,37 +46,7 @@ class Card {
       this._handleDeleteCard()
     });
   }
-
-
-
-  //   _addCard() {
-  //   return cardElement = createCard(cardNameValue, cardLinkValue);
-  // }
-
-
 }
 
 
 
-// let user = new Card('пеним', 'пениа', '.card_template')
-// console.log()
-
-
-
-
-
-
-
-
-
-
-// defaultCardButton.addEventListener('click', () => {
-//   renderElements(true);
-// });
-
-
-
-
-// const putCard = (cardElement) => {
-//   cardsContainer.prepend(cardElement);
-// }
