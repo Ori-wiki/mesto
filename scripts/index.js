@@ -8,8 +8,6 @@ import {
   openImgPopup,
   editProfilePopupForm,
   addCardPopupForm,
-  editProfilePopupField,
-  addCardPopupField,
   cardNameInput,
   cardLinkInput,
   imgPopup,
@@ -24,18 +22,25 @@ import {
   profileProfession,
 } from './constants.js';
 
-//Вызов валидации форм
-const editProfilePopupValidation = new FormValidator(
-  enableValidationObj,
-  editProfilePopupField
-);
-editProfilePopupValidation.enableValidation()
+const formValidators = {
 
-const addCardPopupValidation = new FormValidator(
-  enableValidationObj,
-  addCardPopupField
-);
-addCardPopupValidation.enableValidation()
+}
+// Включение валидации
+const enableValidation = (config) => {
+  const formList = Array.from(document.querySelectorAll(config.formSelector))
+  formList.forEach((formElement) => {
+    const fieldsetList = Array.from(formElement.querySelectorAll(config.fieldSelector));
+    fieldsetList.forEach((fieldSet) => {
+      const validator = new FormValidator(config, fieldSet)
+      const formName = formElement.getAttribute('name')
+      formValidators[formName] = validator;
+      validator.enableValidation();
+    });
+  });
+};
+
+enableValidation(enableValidationObj);
+
 
 //Положить карточку в DOM
 function putCard(cardElement) {
@@ -105,7 +110,7 @@ function handleEditProfileFormSubmit(evt) {
 //Слушатели
 addCardPopupOpenButton.addEventListener('click', () => {
   addCardPopupForm.reset();
-  addCardPopupValidation.resetValidation();
+  formValidators[cardForm.getAttribute('name')].resetValidation()
   openPopup(addCardPopup);
 });
 
@@ -114,19 +119,19 @@ addCardPopupForm.addEventListener('submit', handleAddCardFormSubmit);
 editProfilePopupOpenButton.addEventListener('click', () => {
   profileInputName.value = profileName.textContent;
   profileInputProfession.value = profileProfession.textContent;
-  editProfilePopupValidation.resetValidation();
+  formValidators[profileForm.getAttribute('name')].resetValidation()
   openPopup(editProfilePopup);
 });
 
 editProfilePopupForm.addEventListener('submit', handleEditProfileFormSubmit);
 
 popups.forEach((popup) => {
-    popup.addEventListener('mousedown', (evt) => {
-        if (evt.target.classList.contains('popup_opened')) {
-            closePopup(popup)
-        }
-        if (evt.target.classList.contains('popup__button-close')) {
-          closePopup(popup)
-        }
-    })
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup)
+    }
+    if (evt.target.classList.contains('popup__button-close')) {
+      closePopup(popup)
+    }
+  })
 })
