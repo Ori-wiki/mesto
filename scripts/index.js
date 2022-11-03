@@ -16,7 +16,6 @@ import {
   imgSubtitle,
   cardsContainer,
   popups,
-  closeButtons,
   editProfilePopupOpenButton,
   addCardPopupOpenButton,
   profileInputName,
@@ -88,11 +87,6 @@ function handleEscClose(evt) {
     closePopup(popupOpened)
   }
 }
-function handleOverlayClose(evt) {
-  if (evt.target === evt.currentTarget) {
-    closePopup(evt.target)
-  }
-}
 
 function openFullScreenImgPopup(name, link) {
   imgPopup.src = link;
@@ -126,11 +120,13 @@ editProfilePopupOpenButton.addEventListener('click', () => {
 
 editProfilePopupForm.addEventListener('submit', handleEditProfileFormSubmit);
 
-closeButtons.forEach((button) => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
-});
-
 popups.forEach((popup) => {
-  popup.addEventListener('click', handleOverlayClose)
-});
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__button-close')) {
+          closePopup(popup)
+        }
+    })
+})

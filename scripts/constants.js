@@ -62,9 +62,6 @@ export const cardsContainer = document.querySelector('.cards__list');
 //popup список
 export const popups = document.querySelectorAll('.popup');
 
-//popup close button
-export const closeButtons = document.querySelectorAll('.popup__button-close');
-
 //popup open button
 export const editProfilePopupOpenButton = document.querySelector('.profile__info-edit-button');
 export const addCardPopupOpenButton = document.querySelector('.profile__add-button');
