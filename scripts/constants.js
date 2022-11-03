@@ -41,12 +41,8 @@ export const addCardPopup = document.querySelector('.popup_add_card');
 export const openImgPopup = document.querySelector('.popup_open_img');
 
 //popup form
-export const editProfilePopupForm = document.forms["profile-form"];
-export const addCardPopupForm = document.forms["card-form"];
-
-// popup field
-export const editProfilePopupField = editProfilePopupForm.querySelector('.popup__field')
-export const addCardPopupField = addCardPopupForm.querySelector('.popup__field')
+export const editProfilePopupForm = document.forms["profileForm"];
+export const addCardPopupForm = document.forms["cardForm"];
 
 // input addCardPopup
 export const cardNameInput = addCardPopup.querySelector('.popup__input_data_card-name');
@@ -61,9 +57,6 @@ export const cardsContainer = document.querySelector('.cards__list');
 
 //popup список
 export const popups = document.querySelectorAll('.popup');
-
-//popup close button
-export const closeButtons = document.querySelectorAll('.popup__button-close');
 
 //popup open button
 export const editProfilePopupOpenButton = document.querySelector('.profile__info-edit-button');
