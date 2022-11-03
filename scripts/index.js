@@ -43,13 +43,19 @@ function putCard(cardElement) {
   cardsContainer.prepend(cardElement);
 }
 
+function createCard(item) {
+  const newCard = new Card(item, '.card_template', openFullScreenImgPopup);
+  const cardElement = newCard.createCard();
+  return cardElement
+}
+
 //функция добавления 6 карточек
 const renderElements = () => {
   initialCards.forEach((function (element) {
-    let newCard = new Card(element, '.card_template', openFullScreenImgPopup);
-    const cardElement = newCard.createCard();
+    const cardElement = createCard(element)
     putCard(cardElement)
   }))
+
 };
 renderElements()
 
@@ -70,8 +76,7 @@ function handleAddCardFormSubmit(evt) {
     name: cardNameInput.value,
     link: cardLinkInput.value
   }
-  let newCard = new Card(obj, '.card_template', openFullScreenImgPopup);
-  const cardElement = newCard.createCard();
+  const cardElement = createCard(obj)
   putCard(cardElement)
   closePopup(addCardPopup)
   evt.target.reset();
