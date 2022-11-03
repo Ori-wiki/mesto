@@ -1,6 +1,6 @@
 export default class FormValidator {
-  constructor(enableValidationObj, popupField) {
-    this._field = popupField;
+  constructor(enableValidationObj, formElement) {
+    this._field = formElement;
     this._formSelector = enableValidationObj.formSelector;
     this._fieldSelector = enableValidationObj.fieldSelector;
     this._inputSelector = enableValidationObj.inputSelector;
@@ -8,6 +8,7 @@ export default class FormValidator {
     this._inactiveButtonClass = enableValidationObj.inactiveButtonClass;
     this._inputErrorClass = enableValidationObj.inputErrorClass;
     this._errorClass = enableValidationObj.errorClass;
+    this._buttonElement = this._field.querySelector(this._submitButtonSelector);
     this._inputList = Array.from(this._field.querySelectorAll(this._inputSelector));
   }
 
@@ -33,7 +34,6 @@ export default class FormValidator {
     }
   }
   _setEventListeners() {
-    this._buttonElement = this._field.querySelector(this._submitButtonSelector);
 
     this._toggleButtonState()
 
@@ -73,15 +73,10 @@ export default class FormValidator {
     this._buttonElement.classList.add(this._inactiveButtonClass);
   }
 
-  resetInputError() {
-    this._inputErrorActiveList = this._field.querySelectorAll(`.${this._errorClass}`);
+  resetValidation() {
     this._inputList.forEach((inputElement) => {
-      const errorElement = this._field.querySelector(`.${inputElement.id}-error`);
-      errorElement.textContent = '';
-      inputElement.classList.remove(this._inputErrorClass);
-    })
-    this._inputErrorActiveList.forEach((errorElement) => {
-      errorElement.classList.remove(this._errorClass);
+      this._inputElement = inputElement;
+      this._hideInputError();
     })
     this._disableButtonSubmit()
   }

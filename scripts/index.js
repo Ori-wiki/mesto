@@ -106,7 +106,7 @@ function handleEditProfileFormSubmit(evt) {
 //Слушатели
 addCardPopupOpenButton.addEventListener('click', () => {
   addCardPopupForm.reset();
-  addCardPopupValidation.resetInputError();
+  addCardPopupValidation.resetValidation();
   openPopup(addCardPopup);
 });
 
@@ -115,7 +115,7 @@ addCardPopupForm.addEventListener('submit', handleAddCardFormSubmit);
 editProfilePopupOpenButton.addEventListener('click', () => {
   profileInputName.value = profileName.textContent;
   profileInputProfession.value = profileProfession.textContent;
-  editProfilePopupValidation.resetInputError();
+  editProfilePopupValidation.resetValidation();
   openPopup(editProfilePopup);
 });
 

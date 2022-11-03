@@ -41,8 +41,8 @@ export const addCardPopup = document.querySelector('.popup_add_card');
 export const openImgPopup = document.querySelector('.popup_open_img');
 
 //popup form
-export const editProfilePopupForm = editProfilePopup.querySelector('.popup__form');
-export const addCardPopupForm = addCardPopup.querySelector('.popup__form');
+export const editProfilePopupForm = document.forms["profile-form"];
+export const addCardPopupForm = document.forms["card-form"];
 
 // popup field
 export const editProfilePopupField = editProfilePopupForm.querySelector('.popup__field')
