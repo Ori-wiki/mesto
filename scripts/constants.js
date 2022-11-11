@@ -69,3 +69,7 @@ export const profileInputProfession = editProfilePopup.querySelector('.popup__in
 //profile info
 export const profileName = document.querySelector('.profile__name');
 export const profileProfession = document.querySelector('.profile__profession');
+
+
+//селектор контейнера
+export const cardListSelector = '.cards__list';

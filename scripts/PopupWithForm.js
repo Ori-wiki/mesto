@@ -32,5 +32,5 @@ export default class PopupWithForm extends Popup {
 
 
 const zxc = new PopupWithForm('.popup_edit_profile-info')
-console.log(zxc._inputs)
-console.log(zxc._getInputValues())
+// console.log(zxc._inputs)
+// console.log(zxc._getInputValues())

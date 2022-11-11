@@ -1,5 +1,6 @@
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
+import Section from './Section.js';
 import {
   initialCards,
   enableValidationObj,
@@ -20,6 +21,7 @@ import {
   profileInputProfession,
   profileName,
   profileProfession,
+  cardListSelector
 } from './constants.js';
 
 const formValidators = {
@@ -41,27 +43,24 @@ const enableValidation = (config) => {
 
 enableValidation(enableValidationObj);
 
-
-//Положить карточку в DOM
-function putCard(cardElement) {
-  cardsContainer.prepend(cardElement); ///типa DONE
-}
-
-function createCard(item) {
-  const newCard = new Card(item, '.card_template', openFullScreenImgPopup);
-  const cardElement = newCard.createCard();  //[хз]
+const createCard = (item) => {
+  const card = new Card(item, '.card_template', openFullScreenImgPopup);
+  const cardElement = card.createCard();
   return cardElement
 }
 
-//функция добавления 6 карточек
-const renderElements = () => {
-  initialCards.forEach((function (element) {
-    const cardElement = createCard(element)
-    putCard(cardElement)  //[хз]
-  }))
+//Добавление 6 карточек в DOM
+const cardList = new Section({
+  items: initialCards,
 
-};
-renderElements() //[хз]
+  renderer: (item) => {
+    cardList.addItem(createCard(item));
+  }
+}, cardListSelector);
+
+cardList.renderItems()
+
+
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
@@ -76,13 +75,19 @@ function openPopup(popup) {
 //Функции отпрвки формы card
 function handleAddCardFormSubmit(evt) {
   evt.preventDefault();
-  const obj = {
+  const obj = [{
     name: cardNameInput.value,
     link: cardLinkInput.value
-  }
-  const cardElement = createCard(obj)
-  putCard(cardElement)
-  closePopup(addCardPopup)
+  }]
+  console.log(obj)
+  const cardElement = new Section({
+    items: obj,
+    renderer: (item) => {
+      cardElement.addItem(createCard(item));
+    }
+  }, cardListSelector);
+  cardElement.renderItems();
+  closePopup(addCardPopup);
   evt.target.reset();
 }
 //Функция закрытия попапа на Escape
