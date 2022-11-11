@@ -44,12 +44,12 @@ enableValidation(enableValidationObj);
 
 //Положить карточку в DOM
 function putCard(cardElement) {
-  cardsContainer.prepend(cardElement);
+  cardsContainer.prepend(cardElement); ///типa DONE
 }
 
 function createCard(item) {
   const newCard = new Card(item, '.card_template', openFullScreenImgPopup);
-  const cardElement = newCard.createCard();
+  const cardElement = newCard.createCard();  //[хз]
   return cardElement
 }
 
@@ -57,21 +57,21 @@ function createCard(item) {
 const renderElements = () => {
   initialCards.forEach((function (element) {
     const cardElement = createCard(element)
-    putCard(cardElement)
+    putCard(cardElement)  //[хз]
   }))
 
 };
-renderElements()
+renderElements() //[хз]
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', handleEscClose);
-}
+} //// DONE
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', handleEscClose);
-}
+} //// DONE
 
 //Функции отпрвки формы card
 function handleAddCardFormSubmit(evt) {
@@ -91,7 +91,7 @@ function handleEscClose(evt) {
     const popupOpened = document.querySelector('.popup_opened');
     closePopup(popupOpened)
   }
-}
+} //DONe
 
 function openFullScreenImgPopup(name, link) {
   imgPopup.src = link;
@@ -134,4 +134,4 @@ popups.forEach((popup) => {
       closePopup(popup)
     }
   })
-})
+}) // DONE
