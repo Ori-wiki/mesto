@@ -36,8 +36,9 @@ export default class Card {
   }
 
   _setEventListeners() {
-    this._cardImage.addEventListener('click', () => {
-      this._openFullScreenImgPopup(this._cardNameValue, this._cardLinkValue)
+    this._cardImage.addEventListener('click', (evt) => {
+      this._openFullScreenImgPopup(evt)
+
     });
     this._element.querySelector('.card__like-button').addEventListener('click', (evt) => {
       this._handleSetLike(evt)

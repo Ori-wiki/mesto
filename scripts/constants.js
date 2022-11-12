@@ -40,24 +40,6 @@ export const editProfilePopup = document.querySelector('.popup_edit_profile-info
 export const addCardPopup = document.querySelector('.popup_add_card');
 export const openImgPopup = document.querySelector('.popup_open_img');
 
-//popup form
-export const editProfilePopupForm = document.forms["profileForm"];
-export const addCardPopupForm = document.forms["cardForm"];
-
-// input addCardPopup
-export const cardNameInput = addCardPopup.querySelector('.popup__input_data_card-name');
-export const cardLinkInput = addCardPopup.querySelector('.popup__input_data_card-link');
-
-//popup img
-export const imgPopup = openImgPopup.querySelector('.popup__image');
-export const imgSubtitle = openImgPopup.querySelector('.popup__image-subtitle');
-
-// cardContainer
-export const cardsContainer = document.querySelector('.cards__list');
-
-//popup список
-export const popups = document.querySelectorAll('.popup');
-
 //popup open button
 export const editProfilePopupOpenButton = document.querySelector('.profile__info-edit-button');
 export const addCardPopupOpenButton = document.querySelector('.profile__add-button');
@@ -69,3 +51,7 @@ export const profileInputProfession = editProfilePopup.querySelector('.popup__in
 //profile info
 export const profileName = document.querySelector('.profile__name');
 export const profileProfession = document.querySelector('.profile__profession');
+
+
+//селектор контейнера
+export const cardListSelector = '.cards__list';
