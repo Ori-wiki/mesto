@@ -16,5 +16,3 @@ export default class UserInfo {
   }
 }
 
-
-// const asd = new UserInfo()
