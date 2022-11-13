@@ -16,7 +16,6 @@ import {
   cardListSelector
 } from './constants.js';
 
-
 const formValidators = {
 
 }
@@ -26,12 +25,12 @@ const enableValidation = (config) => {
   const formList = Array.from(document.querySelectorAll(config.formSelector))
   formList.forEach((formElement) => {
 
-      const validator = new FormValidator(config, formElement)
-      const formName = formElement.getAttribute('name')
-      formValidators[formName] = validator;
-      validator.enableValidation();
-    });
-  };
+    const validator = new FormValidator(config, formElement)
+    const formName = formElement.getAttribute('name')
+    formValidators[formName] = validator;
+    validator.enableValidation();
+  });
+};
 
 enableValidation(enableValidationObj);
 
@@ -74,8 +73,7 @@ const addCard = new PopupWithForm('.popup_add_card', {
 addCard.setEventListeners()
 
 //User info
-const userInfo = new UserInfo ({profileName, profileProfession})
-
+const userInfo = new UserInfo({ profileName, profileProfession })
 
 // Фулл скрин фото
 const fullImage = new PopupWithImage('.popup_open_img')
@@ -104,7 +102,6 @@ addCardPopupOpenButton.addEventListener('click', () => {
   formValidators[cardForm.getAttribute('name')].resetValidation()
   addCard.open()
 });
-
 
 editProfilePopupOpenButton.addEventListener('click', () => {
   profileInputName.value = profileName.textContent;

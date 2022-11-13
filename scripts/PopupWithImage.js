@@ -17,16 +17,3 @@ export default class PopupWithImage extends Popup {
     super.open();
   }
 }
-
-
-//  const qwe = new PopupWithImage('.popup_open_img')
-
-// // console.log(qwe)
-
-// const puknul = {
-//   name: 'qwe',
-//   link: 'https://im.wampi.ru/2022/10/25/2896979787.jpg'
-// }
-
-// // qwe.open(puknul)
-
