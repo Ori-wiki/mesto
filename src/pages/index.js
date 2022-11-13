@@ -1,21 +1,23 @@
 import '../pages/index.css';
-import FormValidator from './FormValidator.js';
-import Card from './Card.js';
-import Section from './Section.js';
-import PopupWithForm from "./PopupWithForm.js";
-import PopupWithImage from "./PopupWithImage.js";
-import UserInfo from './UserInfo.js';
+import FormValidator from '../scripts/components/FormValidator.js';
+import Card from '../scripts/components/Card.js';
+import Section from '../scripts/components/Section.js';
+import PopupWithForm from "../scripts/components/PopupWithForm.js";
+import PopupWithImage from "../scripts/components/PopupWithImage.js";
+import UserInfo from '../scripts/components/UserInfo.js';
 import {
   initialCards,
-  enableValidationObj,
-  editProfilePopupOpenButton,
-  addCardPopupOpenButton,
+  ValidationConfig,
+  profilePopupOpenButton,
+  cardPopupOpenButton,
   profileInputName,
   profileInputProfession,
   profileName,
   profileProfession,
-  cardListSelector
-} from './constants.js';
+  cardListSelector,
+  profileNameSelector,
+  profileProfessionSelector
+} from '../scripts/utils/constants.js';
 
 const formValidators = {
 
@@ -33,48 +35,44 @@ const enableValidation = (config) => {
   });
 };
 
-enableValidation(enableValidationObj);
+enableValidation(ValidationConfig);
 
-const openFullScreenImgPopup = (evt) => {
-  const data = {
-    name: evt.target.alt,
-    link: evt.target.src
-  }
+const openFullScreenImgPopup = (data) => {
   fullImage.open(data)
 }
 
 // Попап редактирования формы
-const editPopup = new PopupWithForm('.popup_edit_profile-info', {
-  handleFormSubmit: () => {
-
-    profileName.textContent = profileInputName.value
-    profileProfession.textContent = profileInputProfession.value
-    editPopup.close()
+const popupEditProfileInfo = new PopupWithForm('.popup_edit_profile-info', {
+  handleFormSubmit: (data) => {
+    profileName.textContent = data.name
+    profileProfession.textContent = data.profession
+    popupEditProfileInfo.close()
   }
 })
-editPopup.setEventListeners()
+popupEditProfileInfo.setEventListeners()
+//
+
+const cardElement = new Section({
+  renderer: (item) => {
+    cardElement.addItem(createCard(item));
+  }
+}, cardListSelector);
 
 //Попап добавления карточки
-const addCard = new PopupWithForm('.popup_add_card', {
+const popupAddCard = new PopupWithForm('.popup_add_card', {
   handleFormSubmit: (data) => {
-    const obj = [{
+    const element = {
       name: data.cardName,
       link: data.cardLink
-    }]
-    const cardElement = new Section({
-      items: obj,
-      renderer: (item) => {
-        cardElement.addItem(createCard(item));
-      }
-    }, cardListSelector);
-    cardElement.renderItems();
-    addCard.close()
+    }
+    cardElement.addItem(createCard(element))
+    popupAddCard.close()
   }
 })
-addCard.setEventListeners()
+popupAddCard.setEventListeners()
 
 //User info
-const userInfo = new UserInfo({ profileName, profileProfession })
+const userInfo = new UserInfo({ profileNameSelector, profileProfessionSelector})
 
 // Фулл скрин фото
 const fullImage = new PopupWithImage('.popup_open_img')
@@ -99,14 +97,14 @@ const cardList = new Section({
 cardList.renderItems()
 
 //Слушатели
-addCardPopupOpenButton.addEventListener('click', () => {
+cardPopupOpenButton.addEventListener('click', () => {
   formValidators[cardForm.getAttribute('name')].resetValidation()
-  addCard.open()
+  popupAddCard.open()
 });
 
-editProfilePopupOpenButton.addEventListener('click', () => {
+profilePopupOpenButton.addEventListener('click', () => {
   profileInputName.value = profileName.textContent;
   profileInputProfession.value = profileProfession.textContent;
   formValidators[profileForm.getAttribute('name')].resetValidation()
-  editPopup.open()
+  popupEditProfileInfo.open()
 });
