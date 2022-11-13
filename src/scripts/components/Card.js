@@ -1,9 +1,12 @@
 export default class Card {
   constructor(data, templateSelector, openFullScreenImgPopup) {
-    this._cardNameValue = data.name;
-    this._cardLinkValue = data.link;
+    this._data = data;
+    this._cardNameValue = this._data.name;
+    this._cardLinkValue = this._data.link;
     this._templateSelector = templateSelector;
     this._openFullScreenImgPopup = openFullScreenImgPopup;
+    this._element = this._getTemplate();
+    this._likeButton = this._element.querySelector('.card__like-button')
   }
 
   _getTemplate() {
@@ -17,7 +20,6 @@ export default class Card {
   }
 
   createCard() {
-    this._element = this._getTemplate();
     this._cardImage = this._element.querySelector('.card__list-img');
     this._element.querySelector('.card__title').textContent = this._cardNameValue;
     this._cardImage.src = this._cardLinkValue;
@@ -29,18 +31,18 @@ export default class Card {
 
   _handleDeleteCard() {
     this._element.remove()
+    this._element = null
   }
 
-  _handleSetLike(evt) {
-    evt.target.classList.toggle('card__like-button_active');
+  _handleSetLike() {
+    this._likeButton.classList.toggle('card__like-button_active');
   }
 
   _setEventListeners() {
-    this._cardImage.addEventListener('click', (evt) => {
-      this._openFullScreenImgPopup(evt)
-
+    this._cardImage.addEventListener('click', () => {
+      this._openFullScreenImgPopup(this._data)
     });
-    this._element.querySelector('.card__like-button').addEventListener('click', (evt) => {
+    this._likeButton.addEventListener('click', (evt) => {
       this._handleSetLike(evt)
     });
     this._element.querySelector('.card__delete-button').addEventListener('click', () => {
