@@ -7,7 +7,7 @@ import PopupWithImage from "../scripts/components/PopupWithImage.js";
 import UserInfo from '../scripts/components/UserInfo.js';
 import {
   initialCards,
-  ValidationConfig,
+  validationConfig,
   profilePopupOpenButton,
   cardPopupOpenButton,
   profileInputName,
@@ -35,7 +35,7 @@ const enableValidation = (config) => {
   });
 };
 
-enableValidation(ValidationConfig);
+enableValidation(validationConfig);
 
 const openFullScreenImgPopup = (data) => {
   fullImage.open(data)
@@ -50,13 +50,6 @@ const popupEditProfileInfo = new PopupWithForm('.popup_edit_profile-info', {
   }
 })
 popupEditProfileInfo.setEventListeners()
-//
-
-const cardElement = new Section({
-  renderer: (item) => {
-    cardElement.addItem(createCard(item));
-  }
-}, cardListSelector);
 
 //Попап добавления карточки
 const popupAddCard = new PopupWithForm('.popup_add_card', {
@@ -65,7 +58,7 @@ const popupAddCard = new PopupWithForm('.popup_add_card', {
       name: data.cardName,
       link: data.cardLink
     }
-    cardElement.addItem(createCard(element))
+    cardList.addItem(createCard(element))
     popupAddCard.close()
   }
 })
