@@ -14,7 +14,8 @@
   - Nested БЭМ;
 - Figma;
 - Git;
-- JavaScript
+- JavaScript;
+  - ООП;
 
 ## Функционал:
 - Сложная сетка.
