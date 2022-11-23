@@ -1,5 +1,5 @@
 # Проект: Место
-[Страница на GitHub Pages](https://ori-wiki.github.io/mesto/)
+[:link: Просмотреть страницу в GitHub Pages](https://ori-wiki.github.io/mesto/)
 ### Проектная работа: "Место" от [Яндекс.Практикум](https://practicum.yandex.ru/web/)
 
 ## Описание проекта
