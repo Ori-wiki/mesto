@@ -49,9 +49,8 @@ const api = new Api({
 const userInfo = new UserInfo({
   profileNameSelector,
   profileProfessionSelector,
-  porfileAvatarSelector
+  porfileAvatarSelector,
 });
-console.log(userInfo)
 // Попап редактирования формы
 const popupEditProfileInfo = new PopupWithForm(".popup_edit_profile-info", {
   handleFormSubmit: (data) => {
@@ -189,3 +188,13 @@ function zoli() {
 }
 
 zoli();
+let userId, addCardLike, deleteCardLike;
+const initialData = [api.getUserInfo(), api.getCards()];
+Promise.all(initialData)
+  .then(([userData, cards]) => {
+    userId = userData._id;
+    userInfo.setUserInfo(userData);
+    userInfo.setUserAvatar(userData);
+    cardList.renderItems(cards.reverse());
+  })
+  .catch((err) => console.log(err));
