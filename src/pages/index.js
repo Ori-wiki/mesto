@@ -19,6 +19,7 @@ import {
   cardListSelector,
   profileNameSelector,
   profileProfessionSelector,
+  porfileAvatarSelector,
 } from "../scripts/utils/constants.js";
 
 const formValidators = {};
@@ -39,7 +40,18 @@ enableValidation(validationConfig);
 const openFullScreenImgPopup = (data) => {
   fullImage.open(data);
 };
-
+//
+const api = new Api({
+  serverUrl: "https://mesto.nomoreparties.co/v1/cohort-54/",
+  token: "e9f215c8-c72b-443d-a34a-34c279d27704",
+});
+//User info
+const userInfo = new UserInfo({
+  profileNameSelector,
+  profileProfessionSelector,
+  porfileAvatarSelector
+});
+console.log(userInfo)
 // Попап редактирования формы
 const popupEditProfileInfo = new PopupWithForm(".popup_edit_profile-info", {
   handleFormSubmit: (data) => {
@@ -49,6 +61,18 @@ const popupEditProfileInfo = new PopupWithForm(".popup_edit_profile-info", {
   },
 });
 popupEditProfileInfo.setEventListeners();
+
+//Попап редактирования профиля
+const popupEditAvatar = new PopupWithForm(".popup_edit_avatar", {
+  handleFormSubmit: (data) => {
+    api.patchUserAvatar(data).then((res) => {
+      console.log(res);
+      userInfo.setUserAvatar(res);
+      popupEditAvatar.close();
+    });
+  },
+});
+popupEditAvatar.setEventListeners();
 
 //Попап добавления карточки
 const popupAddCard = new PopupWithForm(".popup_add_card", {
@@ -62,12 +86,6 @@ const popupAddCard = new PopupWithForm(".popup_add_card", {
   },
 });
 popupAddCard.setEventListeners();
-
-//User info
-const userInfo = new UserInfo({
-  profileNameSelector,
-  profileProfessionSelector,
-});
 
 // Фулл скрин фото
 const fullImage = new PopupWithImage(".popup_open_img");
@@ -92,13 +110,13 @@ const confrimDeleteCard = (data) => {
 };
 
 //попап удаления карточки
-const popupDeleteCard = new PopupWithConfirm(".popup_confrim", {
-  handleFormSubmit: (data) => {
-    api.deleteCard(data);
-    popupDeleteCard.close();
-  },
-});
-popupDeleteCard.setEventListeners();
+// const popupDeleteCard = new PopupWithConfirm(".popup_confrim", {
+//   handleFormSubmit: (data) => {
+//     api.deleteCard(data);
+//     popupDeleteCard.close();
+//   },
+// });
+// popupDeleteCard.setEventListeners();
 
 //Добавление 6 карточек в DOM
 const cardList = new Section(
@@ -126,7 +144,12 @@ profilePopupOpenButton.addEventListener("click", () => {
   formValidators[profileForm.getAttribute("name")].resetValidation();
   popupEditProfileInfo.open();
 });
+const avatarOpen = document.querySelector(".profile__avatar");
 
+avatarOpen.addEventListener("click", () => {
+  formValidators[profileFormAvatar.getAttribute("name")].resetValidation();
+  popupEditAvatar.open();
+});
 // fetch("https://mesto.nomoreparties.co/v1/cohort-54/cards", {
 //   headers: {
 //     authorization: "e9f215c8-c72b-443d-a34a-34c279d27704",
@@ -148,10 +171,6 @@ profilePopupOpenButton.addEventListener("click", () => {
 //   });
 
 //api
-const api = new Api({
-  serverUrl: "https://mesto.nomoreparties.co/v1/cohort-54/",
-  token: "e9f215c8-c72b-443d-a34a-34c279d27704",
-});
 
 const dataSkartikame = {
   name: "pups",

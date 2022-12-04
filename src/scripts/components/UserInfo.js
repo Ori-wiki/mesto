@@ -1,7 +1,8 @@
 export default class UserInfo {
-  constructor({ profileName, profileProfession }) {
-    this._name = document.querySelector(profileName);
-    this._profession = document.querySelector(profileProfession);
+  constructor({ profileNameSelector, profileProfessionSelector, porfileAvatarSelector }) {
+    this._name = document.querySelector(profileNameSelector);
+    this._profession = document.querySelector(profileProfessionSelector);
+    this._avatar = document.querySelector(porfileAvatarSelector);
   }
   getUserInfo() {
     const userInfo = {
@@ -13,6 +14,9 @@ export default class UserInfo {
   setUserInfo(userInfo) {
     this._name.textContent = userInfo.name;
     this._profession.textContent = userInfo.profession;
+  }
+  setUserAvatar(data){
+    this._avatar.src = data.avatar;
   }
 }
 

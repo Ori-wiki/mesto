@@ -5,7 +5,13 @@ export default class Api {
   }
 
   _checkResult(res) {
-    return res.json();
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(
+        `Что-то пошло не так: Ошибка ${res.status} - ${res.statusText}`
+      );
+    }
   }
 
   getCards() {
@@ -48,7 +54,7 @@ export default class Api {
     }).then((res) => this._checkResult(res));
   }
   patchUserInfo() {
-    fetch(`${this._baseUrl}users/me`, {
+    return fetch(`${this._baseUrl}users/me`, {
       method: "PATCH",
       headers: {
         authorization: this._token,
@@ -60,16 +66,15 @@ export default class Api {
       }),
     }).then((res) => this._checkResult(res));
   }
-  patchUserAvatar() {
-    fetch(`${this._baseUrl}users/me/avatar`, {
+  patchUserAvatar(data) {
+    return fetch(`${this._baseUrl}users/me/avatar`, {
       method: "PATCH",
       headers: {
         authorization: this._token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        avatar:
-          "https://pictures.s3.yandex.net/frontend-developer/common/avdasa.jpg",
+        avatar: data.avatarLink,
       }),
     }).then((res) => this._checkResult(res));
   }
