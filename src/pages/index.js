@@ -61,7 +61,7 @@ const popupEditProfileInfo = new PopupWithForm(".popup_edit_profile-info", {
 });
 popupEditProfileInfo.setEventListeners();
 
-//Попап редактирования профиля
+//Попап редактирования аватара
 const popupEditAvatar = new PopupWithForm(".popup_edit_avatar", {
   handleFormSubmit: (data) => {
     api.patchUserAvatar(data).then((res) => {
@@ -115,10 +115,12 @@ const confrimDeleteCard = (data) => {
 //Попап удаления карточки
 const popupDeleteCard = new PopupWithConfirm(".popup_confrim", {
   handleFormSubmit: (data) => {
-    // console.log(data);
-    // api.deleteCard(data._id).then((res) => {
-    // popupDeleteCard.close();
-    // });
+    console.log(data._id);
+    api.deleteCard(data._id).then(() => {
+      data.card.remove();
+      data.card = null;
+      popupDeleteCard.close();
+    });
   },
 });
 popupDeleteCard.setEventListeners();
