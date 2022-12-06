@@ -80,8 +80,11 @@ const popupAddCard = new PopupWithForm(".popup_add_card", {
       name: data.cardName,
       link: data.cardLink,
     };
-    cardList.addItem(createCard(element));
-    popupAddCard.close();
+    api.postCard(element).then((res) => {
+      cardList.addItem(createCard(res));
+      popupAddCard.close();
+    });
+    // cardList.addItem(createCard(element));
   },
 });
 popupAddCard.setEventListeners();
@@ -95,10 +98,11 @@ const createCard = (item) => {
   const card = new Card(
     item,
     ".card_template",
+    userId,
     openFullScreenImgPopup,
     confrimDeleteCard
   );
-  const cardElement = card.createCard();
+  const cardElement = card.createCard(item);
   return cardElement;
 };
 
@@ -108,20 +112,20 @@ const confrimDeleteCard = (data) => {
   popupDeleteCard.open();
 };
 
-//попап удаления карточки
-// const popupDeleteCard = new PopupWithConfirm(".popup_confrim", {
-//   handleFormSubmit: (data) => {
-//     api.deleteCard(data);
-//     popupDeleteCard.close();
-//   },
-// });
-// popupDeleteCard.setEventListeners();
+//Попап удаления карточки
+const popupDeleteCard = new PopupWithConfirm(".popup_confrim", {
+  handleFormSubmit: (data) => {
+    // console.log(data);
+    // api.deleteCard(data._id).then((res) => {
+    // popupDeleteCard.close();
+    // });
+  },
+});
+popupDeleteCard.setEventListeners();
 
 //Добавление 6 карточек в DOM
 const cardList = new Section(
   {
-    items: initialCards,
-
     renderer: (item) => {
       cardList.addItem(createCard(item));
     },
@@ -129,7 +133,7 @@ const cardList = new Section(
   cardListSelector
 );
 
-cardList.renderItems();
+// cardList.renderItems();
 
 //Слушатели
 cardPopupOpenButton.addEventListener("click", () => {
@@ -188,11 +192,13 @@ function zoli() {
 }
 
 zoli();
-let userId, addCardLike, deleteCardLike;
+let userId;
 const initialData = [api.getUserInfo(), api.getCards()];
 Promise.all(initialData)
   .then(([userData, cards]) => {
     userId = userData._id;
+    console.log(userId);
+    console.log(cards);
     userInfo.setUserInfo(userData);
     userInfo.setUserAvatar(userData);
     cardList.renderItems(cards.reverse());

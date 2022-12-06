@@ -42,7 +42,7 @@ export default class Api {
         authorization: this._token,
       },
     }).then((res) => {
-      console.log(res);
+      console.log(res)
       this._checkResult(res);
     });
   }

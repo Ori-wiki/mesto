@@ -10,6 +10,7 @@ export default class PopupWithConfirm extends Popup {
 
   _submit(evt) {
     evt.preventDefault();
+    console.log(this.data)
     this._handleFormSubmit(this.data);
   }
 

@@ -2,6 +2,7 @@ export default class Card {
   constructor(
     data,
     templateSelector,
+    userId,
     openFullScreenImgPopup,
     confrimDeleteCard
   ) {
@@ -9,9 +10,13 @@ export default class Card {
     this._cardNameValue = this._data.name;
     this._cardLinkValue = this._data.link;
     this._templateSelector = templateSelector;
+    this._userId = userId;
     this._openFullScreenImgPopup = openFullScreenImgPopup;
     this._confrimDeleteCard = confrimDeleteCard;
     this._element = this._getTemplate();
+    this._cardDeleteButton = this._element.querySelector(
+      ".card__delete-button"
+    );
     this._likeButton = this._element.querySelector(".card__like-button");
   }
 
@@ -31,7 +36,7 @@ export default class Card {
     this._cardImage.src = this._cardLinkValue;
     this._cardImage.alt = this._cardNameValue;
     this._setEventListeners();
-
+    // console.log(this._data)
     return this._element;
   }
 
@@ -51,11 +56,13 @@ export default class Card {
     this._likeButton.addEventListener("click", (evt) => {
       this._handleSetLike(evt);
     });
-    this._element
-      .querySelector(".card__delete-button")
-      .addEventListener("click", () => {
+    if (this._data.owner._id === this._userId) {
+      this._cardDeleteButton.addEventListener("click", () => {
         this._confrimDeleteCard();
         // this._handleDeleteCard();
       });
+    } else {
+      this._cardDeleteButton.classList.add("card__like-button_inactive");
+    }
   }
 }

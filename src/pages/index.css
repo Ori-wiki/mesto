@@ -29,7 +29,7 @@
 @import url(../blocks/card/__list-img/card__list-img.css);
 @import url(../blocks/card/__title/card__title.css);
 @import url(../blocks/card/__delete-button/card__delete-button.css);
-
+@import url(../blocks/card/__delete-button/_inactive/card__like-button_inactive.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
