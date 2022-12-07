@@ -8,7 +8,6 @@
 //       safari: '13'
 //     },
 
-
 //     useBuiltIns: "entry"
 //   }]
 // ];
@@ -24,7 +23,6 @@
 //       chrome: '64',
 //       safari: '11.1'
 //     },
-
 
 //     useBuiltIns: "entry"
 //   }]

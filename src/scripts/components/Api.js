@@ -42,7 +42,6 @@ export default class Api {
         authorization: this._token,
       },
     }).then((res) => {
-      console.log(res)
       this._checkResult(res);
     });
   }
@@ -53,7 +52,7 @@ export default class Api {
       },
     }).then((res) => this._checkResult(res));
   }
-  patchUserInfo() {
+  patchUserInfo(data) {
     return fetch(`${this._baseUrl}users/me`, {
       method: "PATCH",
       headers: {
@@ -61,8 +60,8 @@ export default class Api {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        name: "DENIS",
-        about: "Physicist and Chemist",
+        name: data.name,
+        about: data.profession,
       }),
     }).then((res) => this._checkResult(res));
   }
@@ -84,9 +83,7 @@ export default class Api {
       headers: {
         authorization: this._token,
       },
-    }).then((res) => {
-      this._checkResult(res);
-    });
+    }).then((res) => this._checkResult(res));
   }
   deleteLike(id) {
     return fetch(`${this._baseUrl}cards/${id}/likes`, {
@@ -94,8 +91,6 @@ export default class Api {
       headers: {
         authorization: this._token,
       },
-    }).then((res) => {
-      this._checkResult(res);
-    });
+    }).then((res) => this._checkResult(res));
   }
 }
