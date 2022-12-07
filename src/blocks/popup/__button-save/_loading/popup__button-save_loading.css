@@ -2,8 +2,8 @@
   overflow: hidden;
   display: inline-block;
   vertical-align: bottom;
-  -webkit-animation: ellipsis steps(4, end) 3000ms infinite;
-  animation: ellipsis steps(4, end) 3000ms infinite;
+  -webkit-animation: ellipsis steps(4, end) 1000ms infinite;
+  animation: ellipsis steps(4, end) 1000ms infinite;
   content: "...";
   width: 0px;
 }

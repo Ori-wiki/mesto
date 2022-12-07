@@ -53,37 +53,58 @@ const userInfo = new UserInfo({
 });
 // Попап редактирования формы
 const popupEditProfileInfo = new PopupWithForm(".popup_edit_profile-info", {
-  handleFormSubmit: (data) => {
-    api.patchUserInfo(data).then((res) => {
-      userInfo.setUserInfo(res);
-      popupEditProfileInfo.close();
-    });
+  handleFormSubmit: (data, button) => {
+    addLoading(button);
+    api
+      .patchUserInfo(data)
+      .then((res) => {
+        userInfo.setUserInfo(res);
+        popupEditProfileInfo.close();
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        removeLoading(button);
+      });
   },
 });
 popupEditProfileInfo.setEventListeners();
 
 //Попап редактирования аватара
 const popupEditAvatar = new PopupWithForm(".popup_edit_avatar", {
-  handleFormSubmit: (data) => {
-    api.patchUserAvatar(data).then((res) => {
-      userInfo.setUserAvatar(res);
-      popupEditAvatar.close();
-    });
+  handleFormSubmit: (data, button) => {
+    addLoading(button);
+    api
+      .patchUserAvatar(data)
+      .then((res) => {
+        userInfo.setUserAvatar(res);
+        popupEditAvatar.close();
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        removeLoading(button);
+      });
   },
 });
 popupEditAvatar.setEventListeners();
 
 //Попап добавления карточки
 const popupAddCard = new PopupWithForm(".popup_add_card", {
-  handleFormSubmit: (data) => {
+  handleFormSubmit: (data, button) => {
+    addLoading(button);
     const element = {
       name: data.cardName,
       link: data.cardLink,
     };
-    api.postCard(element).then((res) => {
-      cardList.addItem(createCard(res));
-      popupAddCard.close();
-    });
+    api
+      .postCard(element)
+      .then((res) => {
+        cardList.addItem(createCard(res));
+        popupAddCard.close();
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        removeLoading(button);
+      });
   },
 });
 popupAddCard.setEventListeners();
@@ -120,15 +141,27 @@ const confrimDeleteCard = (data) => {
   popupDeleteCard.open();
 };
 
+//загрузка
+const addLoading = (button) => {
+  button.textContent = "Сохранение";
+  button.classList.add("popup__button-save_loading");
+};
+
+const removeLoading = (button) => {
+  button.classList.remove("popup__button-save_loading");
+  button.textContent = "Сохранить";
+};
 //Попап удаления карточки
 const popupDeleteCard = new PopupWithConfirm(".popup_confrim", {
   handleFormSubmit: (data) => {
-    console.log(data._id);
-    api.deleteCard(data._id).then(() => {
-      data.card.remove();
-      data.card = null;
-      popupDeleteCard.close();
-    });
+    api
+      .deleteCard(data._id)
+      .then(() => {
+        data.card.remove();
+        data.card = null;
+        popupDeleteCard.close();
+      })
+      .catch((err) => console.log(err));
   },
 });
 popupDeleteCard.setEventListeners();
