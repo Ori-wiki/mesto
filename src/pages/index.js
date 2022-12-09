@@ -54,12 +54,12 @@ const removeLoading = (button) => {
 
 // Поставить лайк
 const putLike = (data) => {
-  return api.putLike(data);
+  return api.putLike(data).catch((err) => console.log(err));
 };
 
 // Удалить лайк
 const deleteLike = (data) => {
-  return api.deleteLike(data);
+  return api.deleteLike(data).catch((err) => console.log(err));
 };
 
 const confrimDeleteCard = (data) => {
@@ -125,7 +125,7 @@ const popupAddCard = new PopupWithForm(".popup_add_card", {
     api
       .postCard(element)
       .then((res) => {
-        cardList.addItem(createCard(res),);
+        cardList.addItem(createCard(res));
         popupAddCard.close();
       })
       .catch((err) => {
@@ -187,8 +187,9 @@ cardPopupOpenButton.addEventListener("click", () => {
 });
 
 profilePopupOpenButton.addEventListener("click", () => {
-  profileInputName.value = profileName.textContent;
-  profileInputProfession.value = profileProfession.textContent;
+  const user = userInfo.getUserInfo();
+  profileInputName.value = user.name;
+  profileInputProfession.value = user.about;
   formValidators[profileForm.getAttribute("name")].resetValidation();
   popupEditProfileInfo.open();
 });
