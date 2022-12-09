@@ -30,9 +30,6 @@ export const profileInputProfession = profilePopup.querySelector(
   ".popup__input_data_profession"
 );
 
-//profile info
-export const profileName = document.querySelector(".profile__name");
-export const profileProfession = document.querySelector(".profile__profession");
 // селектор info
 export const profileNameSelector = ".profile__name";
 export const profileProfessionSelector = ".profile__profession";

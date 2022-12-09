@@ -14,14 +14,12 @@ import {
   avatarPopupOpenButton,
   profileInputName,
   profileInputProfession,
-  profileName,
-  profileProfession,
   cardListSelector,
   profileNameSelector,
   profileProfessionSelector,
   porfileAvatarSelector,
 } from "../scripts/utils/constants.js";
-
+import { addLoading, removeLoading } from "../scripts/utils/utils.js";
 const formValidators = {};
 
 // Включение валидации
@@ -39,17 +37,6 @@ enableValidation(validationConfig);
 
 const openFullScreenImgPopup = (data) => {
   fullImage.open(data);
-};
-
-// Загрузка
-const addLoading = (button) => {
-  button.textContent = "Сохранение";
-  button.classList.add("popup__button-save_loading");
-};
-
-const removeLoading = (button) => {
-  button.classList.remove("popup__button-save_loading");
-  button.textContent = "Сохранить";
 };
 
 // Поставить лайк
