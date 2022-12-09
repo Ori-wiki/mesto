@@ -14,14 +14,12 @@ import {
   avatarPopupOpenButton,
   profileInputName,
   profileInputProfession,
-  profileName,
-  profileProfession,
   cardListSelector,
   profileNameSelector,
   profileProfessionSelector,
   porfileAvatarSelector,
 } from "../scripts/utils/constants.js";
-
+import { addLoading, removeLoading } from "../scripts/utils/utils.js";
 const formValidators = {};
 
 // Включение валидации
@@ -41,25 +39,14 @@ const openFullScreenImgPopup = (data) => {
   fullImage.open(data);
 };
 
-// Загрузка
-const addLoading = (button) => {
-  button.textContent = "Сохранение";
-  button.classList.add("popup__button-save_loading");
-};
-
-const removeLoading = (button) => {
-  button.classList.remove("popup__button-save_loading");
-  button.textContent = "Сохранить";
-};
-
 // Поставить лайк
 const putLike = (data) => {
-  return api.putLike(data);
+  return api.putLike(data).catch((err) => console.log(err));
 };
 
 // Удалить лайк
 const deleteLike = (data) => {
-  return api.deleteLike(data);
+  return api.deleteLike(data).catch((err) => console.log(err));
 };
 
 const confrimDeleteCard = (data) => {
@@ -125,7 +112,7 @@ const popupAddCard = new PopupWithForm(".popup_add_card", {
     api
       .postCard(element)
       .then((res) => {
-        cardList.addItem(createCard(res),);
+        cardList.addItem(createCard(res));
         popupAddCard.close();
       })
       .catch((err) => {
@@ -187,8 +174,9 @@ cardPopupOpenButton.addEventListener("click", () => {
 });
 
 profilePopupOpenButton.addEventListener("click", () => {
-  profileInputName.value = profileName.textContent;
-  profileInputProfession.value = profileProfession.textContent;
+  const user = userInfo.getUserInfo();
+  profileInputName.value = user.name;
+  profileInputProfession.value = user.about;
   formValidators[profileForm.getAttribute("name")].resetValidation();
   popupEditProfileInfo.open();
 });
