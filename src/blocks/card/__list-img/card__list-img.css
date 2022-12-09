@@ -5,6 +5,7 @@
   border-radius: 10px 10px 0 0;
   box-sizing: border-box;
   background-size: 50%, contain;
+  background: linear-gradient(blue, pink);
   object-fit: cover;
 }
 

@@ -16,10 +16,14 @@ export default class UserInfo {
     return userInfo;
   }
   setUserInfo(userInfo) {
-    this._name.textContent = userInfo.name;
-    this._profession.textContent = userInfo.about;
+    if (userInfo.name) {
+      this._name.textContent = userInfo.name;
+      this._profession.textContent = userInfo.about;
+    }
   }
   setUserAvatar(data) {
-    this._avatar.src = data.avatar;
+    if (data.avatar) {
+      this._avatar.src = data.avatar;
+    }
   }
 }
