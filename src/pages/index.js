@@ -40,17 +40,44 @@ enableValidation(validationConfig);
 const openFullScreenImgPopup = (data) => {
   fullImage.open(data);
 };
-//
+
+// Загрузка
+const addLoading = (button) => {
+  button.textContent = "Сохранение";
+  button.classList.add("popup__button-save_loading");
+};
+
+const removeLoading = (button) => {
+  button.classList.remove("popup__button-save_loading");
+  button.textContent = "Сохранить";
+};
+
+// Поставить лайк
+const putLike = (data) => {
+  return api.putLike(data);
+};
+
+// Удалить лайк
+const deleteLike = (data) => {
+  return api.deleteLike(data);
+};
+
+const confrimDeleteCard = (data) => {
+  popupDeleteCard.data = data;
+  popupDeleteCard.open();
+};
+
 const api = new Api({
   serverUrl: "https://mesto.nomoreparties.co/v1/cohort-54/",
   token: "e9f215c8-c72b-443d-a34a-34c279d27704",
 });
-//User info
+
 const userInfo = new UserInfo({
   profileNameSelector,
   profileProfessionSelector,
   porfileAvatarSelector,
 });
+
 // Попап редактирования формы
 const popupEditProfileInfo = new PopupWithForm(".popup_edit_profile-info", {
   handleFormSubmit: (data, button) => {
@@ -98,10 +125,12 @@ const popupAddCard = new PopupWithForm(".popup_add_card", {
     api
       .postCard(element)
       .then((res) => {
-        cardList.addItem(createCard(res));
+        cardList.addItem(createCard(res),);
         popupAddCard.close();
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        console.log(err);
+      })
       .finally(() => {
         removeLoading(button);
       });
@@ -109,6 +138,20 @@ const popupAddCard = new PopupWithForm(".popup_add_card", {
 });
 popupAddCard.setEventListeners();
 
+//Попап удаления карточки
+const popupDeleteCard = new PopupWithConfirm(".popup_confrim", {
+  handleFormSubmit: (data) => {
+    api
+      .deleteCard(data._id)
+      .then(() => {
+        data.card.remove();
+        data.card = null;
+        popupDeleteCard.close();
+      })
+      .catch((err) => console.log(err));
+  },
+});
+popupDeleteCard.setEventListeners();
 // Фулл скрин фото
 const fullImage = new PopupWithImage(".popup_open_img");
 fullImage.setEventListeners();
@@ -127,46 +170,7 @@ const createCard = (item) => {
   const cardElement = card.createCard(item);
   return cardElement;
 };
-// поставить лайк
-const putLike = (data) => {
-  return api.putLike(data);
-};
-// удалить лайк
-const deleteLike = (data) => {
-  return api.deleteLike(data);
-};
 
-const confrimDeleteCard = (data) => {
-  popupDeleteCard.data = data;
-  popupDeleteCard.open();
-};
-
-//загрузка
-const addLoading = (button) => {
-  button.textContent = "Сохранение";
-  button.classList.add("popup__button-save_loading");
-};
-
-const removeLoading = (button) => {
-  button.classList.remove("popup__button-save_loading");
-  button.textContent = "Сохранить";
-};
-//Попап удаления карточки
-const popupDeleteCard = new PopupWithConfirm(".popup_confrim", {
-  handleFormSubmit: (data) => {
-    api
-      .deleteCard(data._id)
-      .then(() => {
-        data.card.remove();
-        data.card = null;
-        popupDeleteCard.close();
-      })
-      .catch((err) => console.log(err));
-  },
-});
-popupDeleteCard.setEventListeners();
-
-//Добавление 6 карточек в DOM
 const cardList = new Section(
   {
     renderer: (item) => {
@@ -175,8 +179,6 @@ const cardList = new Section(
   },
   cardListSelector
 );
-
-// cardList.renderItems();
 
 //Слушатели
 cardPopupOpenButton.addEventListener("click", () => {

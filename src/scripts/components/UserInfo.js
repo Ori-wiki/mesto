@@ -17,7 +17,6 @@ export default class UserInfo {
   }
   setUserInfo(userInfo) {
     this._name.textContent = userInfo.name;
-    console.log(this._profession);
     this._profession.textContent = userInfo.about;
   }
   setUserAvatar(data) {
