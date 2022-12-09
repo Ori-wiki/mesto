@@ -8,10 +8,10 @@ import PopupWithConfirm from "../scripts/components/PopupWithConfirm.js";
 import UserInfo from "../scripts/components/UserInfo.js";
 import Api from "../scripts/components/Api.js";
 import {
-  initialCards,
   validationConfig,
   profilePopupOpenButton,
   cardPopupOpenButton,
+  avatarPopupOpenButton,
   profileInputName,
   profileInputProfession,
   profileName,
@@ -40,55 +40,118 @@ enableValidation(validationConfig);
 const openFullScreenImgPopup = (data) => {
   fullImage.open(data);
 };
-//
+
+// Загрузка
+const addLoading = (button) => {
+  button.textContent = "Сохранение";
+  button.classList.add("popup__button-save_loading");
+};
+
+const removeLoading = (button) => {
+  button.classList.remove("popup__button-save_loading");
+  button.textContent = "Сохранить";
+};
+
+// Поставить лайк
+const putLike = (data) => {
+  return api.putLike(data);
+};
+
+// Удалить лайк
+const deleteLike = (data) => {
+  return api.deleteLike(data);
+};
+
+const confrimDeleteCard = (data) => {
+  popupDeleteCard.data = data;
+  popupDeleteCard.open();
+};
+
 const api = new Api({
   serverUrl: "https://mesto.nomoreparties.co/v1/cohort-54/",
   token: "e9f215c8-c72b-443d-a34a-34c279d27704",
 });
-//User info
+
 const userInfo = new UserInfo({
   profileNameSelector,
   profileProfessionSelector,
   porfileAvatarSelector,
 });
+
 // Попап редактирования формы
 const popupEditProfileInfo = new PopupWithForm(".popup_edit_profile-info", {
-  handleFormSubmit: (data) => {
-    profileName.textContent = data.name;
-    profileProfession.textContent = data.profession;
-    popupEditProfileInfo.close();
+  handleFormSubmit: (data, button) => {
+    addLoading(button);
+    api
+      .patchUserInfo(data)
+      .then((res) => {
+        userInfo.setUserInfo(res);
+        popupEditProfileInfo.close();
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        removeLoading(button);
+      });
   },
 });
 popupEditProfileInfo.setEventListeners();
 
 //Попап редактирования аватара
 const popupEditAvatar = new PopupWithForm(".popup_edit_avatar", {
-  handleFormSubmit: (data) => {
-    api.patchUserAvatar(data).then((res) => {
-      console.log(res);
-      userInfo.setUserAvatar(res);
-      popupEditAvatar.close();
-    });
+  handleFormSubmit: (data, button) => {
+    addLoading(button);
+    api
+      .patchUserAvatar(data)
+      .then((res) => {
+        userInfo.setUserAvatar(res);
+        popupEditAvatar.close();
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        removeLoading(button);
+      });
   },
 });
 popupEditAvatar.setEventListeners();
 
 //Попап добавления карточки
 const popupAddCard = new PopupWithForm(".popup_add_card", {
-  handleFormSubmit: (data) => {
+  handleFormSubmit: (data, button) => {
+    addLoading(button);
     const element = {
       name: data.cardName,
       link: data.cardLink,
     };
-    api.postCard(element).then((res) => {
-      cardList.addItem(createCard(res));
-      popupAddCard.close();
-    });
-    // cardList.addItem(createCard(element));
+    api
+      .postCard(element)
+      .then((res) => {
+        cardList.addItem(createCard(res),);
+        popupAddCard.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        removeLoading(button);
+      });
   },
 });
 popupAddCard.setEventListeners();
 
+//Попап удаления карточки
+const popupDeleteCard = new PopupWithConfirm(".popup_confrim", {
+  handleFormSubmit: (data) => {
+    api
+      .deleteCard(data._id)
+      .then(() => {
+        data.card.remove();
+        data.card = null;
+        popupDeleteCard.close();
+      })
+      .catch((err) => console.log(err));
+  },
+});
+popupDeleteCard.setEventListeners();
 // Фулл скрин фото
 const fullImage = new PopupWithImage(".popup_open_img");
 fullImage.setEventListeners();
@@ -100,32 +163,14 @@ const createCard = (item) => {
     ".card_template",
     userId,
     openFullScreenImgPopup,
-    confrimDeleteCard
+    confrimDeleteCard,
+    putLike,
+    deleteLike
   );
   const cardElement = card.createCard(item);
   return cardElement;
 };
 
-//колбек
-const confrimDeleteCard = (data) => {
-  popupDeleteCard.data = data;
-  popupDeleteCard.open();
-};
-
-//Попап удаления карточки
-const popupDeleteCard = new PopupWithConfirm(".popup_confrim", {
-  handleFormSubmit: (data) => {
-    console.log(data._id);
-    api.deleteCard(data._id).then(() => {
-      data.card.remove();
-      data.card = null;
-      popupDeleteCard.close();
-    });
-  },
-});
-popupDeleteCard.setEventListeners();
-
-//Добавление 6 карточек в DOM
 const cardList = new Section(
   {
     renderer: (item) => {
@@ -134,8 +179,6 @@ const cardList = new Section(
   },
   cardListSelector
 );
-
-// cardList.renderItems();
 
 //Слушатели
 cardPopupOpenButton.addEventListener("click", () => {
@@ -149,58 +192,17 @@ profilePopupOpenButton.addEventListener("click", () => {
   formValidators[profileForm.getAttribute("name")].resetValidation();
   popupEditProfileInfo.open();
 });
-const avatarOpen = document.querySelector(".profile__avatar");
 
-avatarOpen.addEventListener("click", () => {
+avatarPopupOpenButton.addEventListener("click", () => {
   formValidators[profileFormAvatar.getAttribute("name")].resetValidation();
   popupEditAvatar.open();
 });
-// fetch("https://mesto.nomoreparties.co/v1/cohort-54/cards", {
-//   headers: {
-//     authorization: "e9f215c8-c72b-443d-a34a-34c279d27704",
-//   },
-// })
-//   .then((res) => res.json())
-//   .then((result) => {
 
-//   });
-
-// fetch("https://mesto.nomoreparties.co/v1/cohort-54/users/me", {
-//   headers: {
-//     authorization: "e9f215c8-c72b-443d-a34a-34c279d27704",
-//   },
-// })
-//   .then((res) => res.json())
-//   .then((result) => {
-
-//   });
-
-//api
-
-const dataSkartikame = {
-  name: "pups",
-  link: "https://sun9-72.userapi.com/c851020/v851020154/1085b8/Bp249OcjX6M.jpg",
-};
-
-function zoli() {
-  // api.getCards()
-  // api.postCard(dataSkartikame)
-  // api.deleteCard('638bf2de194b5a1a6c2a8557')
-  // api.getUserInfo()
-  // api.patchUserInfo()
-  // api.patchUserAvatar()
-  // api.putLike('638bf2de194b5a1a6c2a8557')
-  // api.deleteLike('638bf2de194b5a1a6c2a8557')
-}
-
-zoli();
 let userId;
 const initialData = [api.getUserInfo(), api.getCards()];
 Promise.all(initialData)
   .then(([userData, cards]) => {
     userId = userData._id;
-    console.log(userId);
-    console.log(cards);
     userInfo.setUserInfo(userData);
     userInfo.setUserAvatar(userData);
     cardList.renderItems(cards.reverse());
